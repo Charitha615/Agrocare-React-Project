@@ -4,12 +4,13 @@ import LogoImg from "../../Images/Logo2.png";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../API/environment";
+import jwt_decode from "jwt-decode";
 
 const initialState = {
   email: "",
   password: "",
-  stu:1,
-  emp:1,
+  stu: 1,
+  emp: 1,
 };
 
 class Login extends Component {
@@ -32,92 +33,44 @@ class Login extends Component {
       password: this.state.password,
     };
 
-  
-
-    if (login.email == "admin@gmail.com" && login.password == "1234") {
-      this.props.history.push("/adminProfile");
-      toast.success("admin@gmail.com is logged as Admin");
-  
-    }
-
-    if (login.email == "admin@gmail.com" && login.password != "1234") {
-      toast.error("Admin, Please check ypur PASSCODE!");
-    }
-
-    axios.post(`${APIURL}/employer/login-employer`, login).then((res) => {
-      console.log("res", res);
-      if (res.data.code === 200) {
-      
-        console.log("data are ", res.data.data);
-        const { userRoleStatus } = res.data.data;
-
-        if (userRoleStatus === "Employer") {
-          let i = JSON.stringify(res.data.token);
-          let result = i.slice(1, -1);
-
-          let User = JSON.stringify(res.data.data._id);
-          let EId = User.slice(1, -1);
-
-          localStorage.setItem("LocalEmployerID", EId);
-
-          let UserName = JSON.stringify(res.data.data.employer_name);
-          let EName = UserName.slice(1, -1);
-
-          localStorage.setItem("LocalEmployerName", EName);
-
-          localStorage.setItem("employer", JSON.stringify(res.data.data));
-          localStorage.setItem("token", result);
-          console.log("tok", result);
-          this.props.history.push("/employerDashboard");
-          toast.success(
-            this.state.email +
-              " is logged as an Employer"
-          );
-        }
-      } else if(res.data.message == "This email doest not exist. Please create a your account first.")  {
-        this.state.emp=2;
-        // toast.error(res.data.message);
-        // toast.error("Password does not mach this"+ login.email);
-        // alert(res.data.message)
-      }
-      else{
-             toast.error(res.data.message);
-      }
-    });
     console.log("email", login);
-    axios.post(`${APIURL}/applicantReg/applicant-login`, login).then((res) => {
+
+    axios.post(`${APIURL}/user/login`, login).then((res) => {
       console.log("res", res);
-      if (res.data.code === 200) {
-        this.state.stu=2;
-        console.log("data are ", res.data.data);
-        const { userRoleStatus } = res.data.data;
 
-        if (userRoleStatus == "Applicant") {
-          let i = JSON.stringify(res.data.token);
-          let result = i.slice(1, -1);
+      if (res.status === 201) {
+        console.log("data are 201", res.data.data.token);
 
-          let User = JSON.stringify(res.data.data._id);
-          let UId = User.slice(1, -1);
+        const token = res.data.data.token;
+        const decoded = jwt_decode(token);
+        console.log(decoded.result.user_type);
 
-          localStorage.setItem("User", JSON.stringify(res.data.data));
-          localStorage.setItem("token", result);
-
-          localStorage.setItem("LocalUserID", UId);
-          console.log("tok", result);
-          this.props.history.push("/applicantHome");
-          // alert(res.data.message)
-
-          toast.success(
-            res.data.data.firstName +
-              " is logged as an APPLICANT"
-          );
+        const userRoleStatus = (decoded.result.user_type);
+        alert("Hello1");
+        if (userRoleStatus === "Farmer") {
+         
+          console.log("userRoleStatus", userRoleStatus);
+          // localStorage.setItem("LocalEmployerID");
+          toast.success("res.data.message");
+          // localStorage.setItem("LocalEmployerID");
+          // this.props.history.push("/applicantHome");
+          window.location.href = "/applicantHome";
+      
+  
         }
-      } else if(this.state.emp == 2) {
-        toast.error(res.data.message);
-        // toast.error("Password does not mach this"+ login.email);
-        // alert(res.data.message);
+       
       }
+      // else if (res.data.message == "This email doest not exist. Please create a your account first.") {
+      //   this.state.emp = 2;
+      //   // toast.error(res.data.message);
+      //   // toast.error("Password does not mach this"+ login.email);
+      //   // alert(res.data.message)
+      // }
+      // else {
+      //   toast.error(res.data.message);
+      // }
     });
+
   }
 
   render() {
@@ -138,7 +91,7 @@ class Login extends Component {
               </div>
               <div className="con">
                 <label className="lable-data" htmlFor="name">
-                  User Name
+                  Gmail
                 </label>
                 <input
                   className="add-data"
@@ -163,17 +116,17 @@ class Login extends Component {
                 />
               </div>
               <div>
-                <div className="con-checkbox" style={{ marginTop: "20px"}}>
+                <div className="con-checkbox" style={{ marginTop: "20px" }}>
                   <input
                     type="checkbox"
-                    style={{  marginLeft: "-100px" }}
+                    style={{ marginLeft: "-100px" }}
                   />
-                  <span style={{marginTop: "0px", color: "black", marginLeft: "-100px" }}>
+                  <span style={{ marginTop: "0px", color: "black", marginLeft: "-100px" }}>
                     Remember
                   </span>
                   {/* <span className="lable-data">Remember</span> */}
                 </div>
-                <div className="con" style={{marginTop:"20px"}}>
+                <div className="con" style={{ marginTop: "20px" }}>
                   <input
                     className="add-data-submit"
                     type="submit"

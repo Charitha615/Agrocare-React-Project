@@ -8,21 +8,23 @@ import { APIURL } from "../../../API/environment";
 
 
 const initialState = {
-  firstName: "",
-  lastName: "",
-  Field: "",
+  first_name: "",
+  last_name: "",
+  user_type: "",
   nic: "",
-  postalCode: "",
+  nearest_city:"",
+  district:"",
   email: "",
   password: "",
-  mobileNumber: "",
+  mobile_no: "",
+  province:""
 };
 
 const InterestedFieldsoptions = [
   { value: "Farmer", label: "Farmer" },
-  { value: "Customer ", label: "Customer " },
-  { value: "Expert ", label: "Expert" },
-  { value: "Shop owner", label: "Shop owner" },
+  { value: "Customer", label: "Customer" },
+  { value: "Expert", label: "Expert" },
+  { value: "Shop_owner", label: "Shop owner" },
 ];
 
 class RegistationStudent extends Component {
@@ -35,7 +37,7 @@ class RegistationStudent extends Component {
   }
 
   onGenderOptionSelected(e) {
-    this.state.Field = e.label;
+    this.state.user_type = e.label;
   }
 
   onChange(e) {
@@ -45,36 +47,32 @@ class RegistationStudent extends Component {
   onSubmit(event) {
     event.preventDefault();
 
-    let ApplicantDetails = {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      Field: this.state.Field,
+    let UserDetails = {
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
+      user_type: this.state.user_type,
       nic:this.state.nic,
-      postalCode:this.state.postalCode,
       email: this.state.email,
       password: this.state.password,
-      mobileNumber: this.state.mobileNumber,
-      userRoleStatus:"Applicant",
-      accountStatus:"approved"
+      mobile_no: this.state.mobile_no,
+      nearest_city:this.state.nearest_city,
+      district: this.state.district,
+      province:this.state.province
+ 
     };
 
-    console.log("Applicant Details : ", ApplicantDetails);
+    console.log(" Details : ", UserDetails);
 
     axios
-      .post(`${APIURL}/applicantReg/newApplicant`, ApplicantDetails)
+      .post(`${APIURL}/user/register`, UserDetails)
       .then((res) => {
-        console.log("res", res);
-        if (res.data.code === 200) {
-          console.log("res.data.code", res.data.code);
-          alert("Please Verify Your Email !")
-          toast.success(res.data.message);
+        if (res.status === 201) {
+          toast.success("Your Account Is Created!");
           window.setTimeout(function () {
             window.location.href = "/login";
-          }, 100);
-          //   window.location.href = "/login";
+          }, 170);
         } else {
-          toast.error(res.data.message);
-          alert(res.data.message)
+          toast.error("Plz check your details!");
 
         }
       });
@@ -107,8 +105,8 @@ class RegistationStudent extends Component {
                           className="form-control"
                           id="exampleInputPassword1"
                           placeholder="First Name"
-                          name="firstName"
-                          value={this.state.firstName}
+                          name="first_name"
+                          value={this.state.first_name}
                           onChange={this.onChange}
                         />
                       </div>
@@ -130,8 +128,8 @@ class RegistationStudent extends Component {
                           className="form-control"
                           id="exampleInputPassword1"
                           placeholder="Province "
-                          name="Province "
-                          value={this.state.Province }
+                          name="province"
+                          value={this.state.province }
                           onChange={this.onChange}
                         />
                       </div>
@@ -152,8 +150,8 @@ class RegistationStudent extends Component {
                           className="form-control"
                           id="exampleInputPassword1"
                           placeholder="Last Name"
-                          name="lastName"
-                          value={this.state.lastName}
+                          name="last_name"
+                          value={this.state.last_name}
                           onChange={this.onChange}
                         />
                       </div>
@@ -164,8 +162,8 @@ class RegistationStudent extends Component {
                           className="form-control"
                           id="exampleInputPassword1"
                           placeholder="Nearest city"
-                          name="nearestcity"
-                          value={this.state.nearestcity}
+                          name="nearest_city"
+                          value={this.state.nearest_city}
                           onChange={this.onChange}
                         />
                       </div>
@@ -204,8 +202,8 @@ class RegistationStudent extends Component {
                       className="form-control"
                       id="exampleInputPassword1"
                       placeholder="Mobile number"
-                      name="mobileNumber"
-                      value={this.state.mobileNumber}
+                      name="mobile_no"
+                      value={this.state.mobile_no}
                       onChange={this.onChange}
                     />
                   </div>

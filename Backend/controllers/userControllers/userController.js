@@ -8,7 +8,7 @@ const {addFile, deleteFile} = require("../../services/profilePhotoService");
 
 module.exports = {
     registerUser: async (req, res) => {
-        const schema = Joi.object({
+        const schema = Joi.object({  
             first_name: Joi.string().required(),
             last_name: Joi.string().required(),
             user_type: Joi.string().required(),
@@ -21,12 +21,13 @@ module.exports = {
             province:Joi.string().allow("")
         });
 
+
         const validate = schema.validate(req.body, {abortEarly: false});
         if (validate.error) {
+            console.log("validate.error",validate.error);
             res.status(400).send({message: validate.error.details});
             return;
         }
-
         const body = validate.value;
         try {
             const result = await registerUser(body);
