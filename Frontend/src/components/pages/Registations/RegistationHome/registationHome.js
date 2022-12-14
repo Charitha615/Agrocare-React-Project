@@ -17,37 +17,35 @@ class RegistationHome extends Component {
                 Login
               </a>
             </div>
+            
           </div>
         </div>
+        
         <section>
           <div className="section-container">
             <div className="sec-card">
               <div className="card-box">
                 <div className="card-content">
-                  <h3>Applicant Sign Up</h3>
+                  <h3>About the application</h3>
                   <p>
-                    Applicant User Profile allows you to edit user profiles,
-                    search for jobs, apply them, view their statuses and much more.
+                  These example sentences are selected automatically from various online news sources to reflect current usage of the word 'description.' Views expressed in the examples do not represent the opinion of Merriam-Webster or its editors. Send us feedback.
                   </p>
-                  <a href="/studentRegister">Register as Applicant</a>
+                  <a href="/Register">New Register</a>
                 </div>
               </div>
             </div>
             <div className="sec-card">
               <div className="card-box">
                 <div className="card-content">
-                  <h3>Employer Sign Up</h3>
+                  <h3>About users</h3>
                   <p>
-                    The user profile of the employer enables the publication of
-                    jobs, management of existing jobs, review of registered
-                    candidates, review of student contracts and invoices.With
-                    supporting text below as a natural lead-in to additional
-                    content.
+                  These example sentences are selected automatically from various online news sources to reflect current usage of the word 'description.' Views expressed in the examples do not represent the opinion of Merriam-Webster or its editors. Send us feedback.
                   </p>
-                  <a href="/employeRegister">Register as Employer</a>
+                  {/* <a href="/employeRegister">Register as Employer</a> */}
                 </div>
               </div>
             </div>
+            
           </div>
         </section>
       </div>
