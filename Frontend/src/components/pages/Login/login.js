@@ -41,20 +41,22 @@ class Login extends Component {
       if (res.status === 201) {
         console.log("data are 201", res.data.data.token);
 
+        localStorage.setItem("Token",res.data.data.token);
+
         const token = res.data.data.token;
         const decoded = jwt_decode(token);
-        console.log(decoded.result.user_type);
+        console.log(decoded.result);
 
         const userRoleStatus = (decoded.result.user_type);
-        alert("Hello1");
-        if (userRoleStatus === "Farmer") {
+      
+        if (userRoleStatus === "farmer") {
          
           console.log("userRoleStatus", userRoleStatus);
           // localStorage.setItem("LocalEmployerID");
-          toast.success("res.data.message");
+          toast.success("You login as a Farmer");
           // localStorage.setItem("LocalEmployerID");
           // this.props.history.push("/applicantHome");
-          window.location.href = "/applicantHome";
+          window.location.href = "/FarmerHomePage";
       
   
         }
