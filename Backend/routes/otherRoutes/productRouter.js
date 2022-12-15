@@ -9,3 +9,4 @@ router.delete("/:id", checkToken, farmerOowner, deleteProduct)
 router.get("/allProducts", checkToken, getAllProducts )
 router.get("/", checkToken, getProduct)
 module.exports = router;
+// test
