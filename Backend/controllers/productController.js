@@ -87,7 +87,7 @@ module.exports = {
                 res.status(404).send("No item found with the id - "+id)
                 return;
             }
-            res.status(200).send(result[0]);
+            res.status(200).send(result);
         } catch (e) {
             res.status(e.code || 400).send(e.message)
         }
