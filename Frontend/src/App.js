@@ -10,7 +10,11 @@ import login from "./components/pages/Login/login";
 // Farmer 
 import FarmerHomePage from "./components/pages/Farmer/Home/farmerHome";
 import AddProduct from "./components/pages/Farmer/Product/CreateProduct";
-import CreatedProductList from "./components/pages/Farmer/Product/CreatedProductList/createdProductList"
+import CreatedProductList from "./components/pages/Farmer/Product/CreatedProductList/createdProductList";
+import UpdateProduct from  "./components/pages/Farmer/Product/EditProduct";
+import FarmerProfile from  "./components/pages/Farmer/Profile/Profile";
+import FarmerQuestionsAdd from  "./components/pages/Farmer/Forum/Q&A";
+
 
 
 
@@ -39,6 +43,9 @@ function App() {
           <Route path="/FarmerHomePage" component={FarmerHomePage} />
           <Route path="/AddProduct" component={AddProduct} />
           <Route path="/CreatedProductList" component={CreatedProductList} />
+          <Route path="/UpdateProduct" component={UpdateProduct} />
+          <Route path="/FarmerProfile" component={FarmerProfile} />
+          <Route path="/addQuestions" component={FarmerQuestionsAdd} />
           
           
 

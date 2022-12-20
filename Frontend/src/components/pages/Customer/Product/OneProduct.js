@@ -274,7 +274,7 @@ class AdminCreateEvent extends Component {
                                     </div>
                                 </div>
                                 <footer className="footer text-center text-sm-left">
-                                    © 2021 JobBank
+                                    © 2021 Agrocare
                                 </footer>
                             </div>
                         </div>

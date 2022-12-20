@@ -4,91 +4,27 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../API/environment";
 import Select from "react-select";
-import Navbar from '../../Adminnavibar';
+import Navbar from '../../farmerNavibar';
 import Daybar from '../../DayBar';
 
 const initialState = {
-    eventTitle: "",
-    companyName: "",
-    shortDescription: "",
-    location: "",
-    closingDate: "",
-    eventType: "",
-    startingDate: "",
-    CreatedBy:"ADMIN",
-    jobID:""
+    product_name: "",
+    unit_price: "",
+    available_until: "",
+    available_from: "",
+    quantity: ""
 };
 
-const EventTypes = [
-    { value: "Workshops", label: "Workshops" },
-    { value: "Conferences", label: "Conferences" },
-    { value: "A seminar ", label: "A seminar " },
-    { value: "Networking sessions", label: "Networking sessions" },
+const Token = localStorage.getItem("Token");
 
-];
-
-
-const EventId = localStorage.getItem("EventID");
-
-class AdminCreateEvent extends Component {
+class EditProduct extends Component {
 
     constructor(props) {
         super(props);
-        this.state =  {
-            initialState,
-            events:[]
-          };
+        this.state = initialState;
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onEventTypesOptionSelected = this.onEventTypesOptionSelected.bind(this);
-        this.onDelete = this.onDelete.bind(this);
-        
-
-    }
-
-    onDelete(){
-
-        const EventID = this.state.jobID
-        axios.delete(`${APIURL}/Events/delete-event/${EventID}`)
-            .then((res) => {
-                console.log("res", res);
-                if (res.data.code === 200) {
-                    console.log("res.data.code", res.data.code);
-                    alert(res.data.message);
-
-                    window.location = ("/AdminEventView")
-
-                } else {
-                    toast.error(res.data.message);
-                    alert(res.data.message);
-
-                }
-            });
-
-    }
-
-    componentDidMount() {
-
-
-        axios.get(`${APIURL}/Events/getEventByid/${EventId}`)
-
-            .then(response => {
-   
-                this.setState({ events: response.data.data }); 
-                console.log("response ", response.data.data);
-
-                this.setState({ eventTitle: this.state.events.eventTitle });
-                this.setState({ companyName: this.state.events.companyName });
-                this.setState({ shortDescription: this.state.events.shortDescription });
-
-                this.setState({ location: this.state.events.location });
-                this.setState({ eventType: this.state.events.eventType });
-                this.setState({ startingDate: this.state.events.startingDate });
-                this.setState({ closingDate: this.state.events.closingDate });
-
-                this.setState({ jobID: this.state.events._id});
-
-            })
 
     }
 
@@ -98,41 +34,42 @@ class AdminCreateEvent extends Component {
 
     onEventTypesOptionSelected(e) {
         this.state.eventType = e.label;
-      }
+    }
 
     onSubmit(event) {
         event.preventDefault();
 
-        let EventDetails = {
-            eventTitle:this.state.eventTitle,
-            companyName:this.state.companyName,
-            shortDescription:this.state.shortDescription,
-            location: this.state.location,
-            closingDate: this.state.closingDate,
-            eventType: this.state.eventType,
-            startingDate:this.state.startingDate,
-            CreatedBy:this.state.CreatedBy,
+        let ProductDetails = {
+            product_name: this.state.product_name,
+            unit_price: this.state.unit_price,
+            available_until: this.state.available_until,
+            available_from: this.state.available_from,
+            quantity: this.state.quantity
         };
 
-        console.log("Event Details : ", EventDetails);
-        const EventID = this.state.jobID
-        axios.put(`${APIURL}/Events/update-event/${EventID}`, EventDetails)
+        console.log("Product Details: ", ProductDetails);
+
+        let config = {
+            headers: {
+              'Authorization': 'Bearer ' + Token
+            }
+          }
+
+        axios
+            .post(`${APIURL}/product/`, ProductDetails,config)
             .then((res) => {
                 console.log("res", res);
-                if (res.data.code === 200) {
-                    console.log("res.data.code", res.data.code);
-                    alert(res.data.message);
-
+                if (res.status === 201) {
+                
+                    toast.success("Product added!");
                     window.location.reload();
 
                 } else {
-                    toast.error(res.data.message);
+                    toast.error("Please check your details");
                     alert(res.data.message);
 
                 }
             });
-            console.log("OUT");
-
 
     }
 
@@ -140,7 +77,7 @@ class AdminCreateEvent extends Component {
         return (
             <>
                 <div>
-                   <Navbar/>
+                    <Navbar />
                     <div className="page-wrapper">
                         <div className="topbar">
 
@@ -153,109 +90,81 @@ class AdminCreateEvent extends Component {
                                         <div className="page-title-box">
                                             <div className="row">
                                                 <div className="col">
-                                                    <h4 className="page-title">Create Event</h4>
-                                                    <ol className="breadcrumb">
-                                                        <li className="breadcrumb-item"><a href="javascript:void(0);">Agrocare</a></li>
-                                                  
-                                                    </ol>
+                                                    <h4 className="page-title">Edit Product</h4>
+                                                    
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
-                               
                                 </div>
+
                                 <div className="row" style={{ marginTop: "60px" }}>
                                     <div className="col-lg-12">
                                         <div className="card">
                                             <div className="card-header">
-                                                <h4 className="card-title">Edit Event</h4>
-                                                
+                                                <h4 className="card-title">Update your Product</h4>
+
                                             </div>
                                             <div className="card-body">
                                                 <div className="row">
                                                     <div className="col-lg-12">
                                                         <div className="form-group row">
-                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Event Title</label>
+                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Product Name</label>
                                                             <div className="col-sm-10">
-                                                                <input className="form-control" type="text" placeholder="Event Title is..." id="example-text-input"
-                                                                    name="eventTitle"
-                                                                    value={this.state.eventTitle}
+                                                                <input className="form-control" type="text" placeholder="Product Name is..." id="example-text-input"
+                                                                    name="product_name"
+                                                                    value={this.state.product_name}
                                                                     onChange={this.onChange}
                                                                     required />
                                                             </div>
                                                         </div>
 
                                                         <div className="form-group row">
-                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Company Name</label>
+                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Product Price</label>
                                                             <div className="col-sm-10">
-                                                                <input className="form-control" type="text" placeholder="Company Name is..." id="example-text-input"
-                                                                    name="companyName"
-                                                                    value={this.state.companyName}
+                                                                <input className="form-control" type="text" placeholder="A Product Price is..." id="example-text-input"
+                                                                    name="unit_price"
+                                                                    value={this.state.unit_price}
                                                                     onChange={this.onChange}
                                                                     required />
                                                             </div>
                                                         </div>
 
-                                                        <div className="form-group row" style={{ marginTop: "40px" }}>
-                                                            <label htmlFor="example-email-input" className="col-sm-2 col-form-label text-right">Short Description</label>
-                                                            <div className="col-sm-10">
-                                                                <textarea id="textarea" className="form-control" maxLength={225} rows={3} placeholder="This textarea has a limit of 225 chars."
-                                                                    name="shortDescription"
-                                                                    value={this.state.shortDescription}
-                                                                    onChange={this.onChange} />
 
-                                                            </div>
-                                                        </div>
 
 
                                                         <div className="form-group row">
-                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Company Location</label>
+                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Products quantity</label>
                                                             <div className="col-sm-10">
-                                                                <input className="form-control" type="text" placeholder="Company Location is..." id="example-text-input"
-                                                                    name="location"
-                                                                    value={this.state.location}
+                                                                <input className="form-control" type="text" placeholder="Products quantities are..." id="example-text-input"
+                                                                    name="quantity"
+                                                                    value={this.state.quantity}
                                                                     onChange={this.onChange}
                                                                     required />
                                                             </div>
                                                         </div>
 
-                                                        <div className="form-group row" style={{ marginTop: "40px" }}>
-                                                            <label htmlFor="example-tel-input" className="col-sm-2 col-form-label text-right">Event Type</label>
-                                                            <div className="col-sm-4">
-                                                               
 
-                                                                <Select
-                                                                    placeholder="Select Event Type"
-                                                                    options={EventTypes}
-                                                                    onChange={this.onEventTypesOptionSelected}
-                                                                />
-                                                            </div>
-                                                            
-                                                        </div>
 
                                                         <div className="form-group row" style={{ marginTop: "40px" }}>
                                                             <label htmlFor="example-number-input" className="col-sm-2 col-form-label text-right">Starting date</label>
                                                             <div className="col-sm-4">
-                                                                <input className="form-control" type="datetime-local" defaultValue="2011-08-19T13:45:00" id="example-datetime-local-input"
-                                                                    name="startingDate"
-                                                                    value={this.state.startingDate}
+                                                                <input className="form-control" type="date" defaultValue="2011-08-19T13:45:00" id="example-datetime-local-input"
+                                                                    name="available_from"
+                                                                    value={this.state.available_from}
                                                                     onChange={this.onChange}
                                                                     required />
-                                                                    <label htmlFor="example-number-input" className="col-sm-12 col-form-label text-right">{this.state.startingDate}</label>
                                                             </div>
 
                                                         </div>
                                                         <div className="form-group row" style={{ marginTop: "40px" }}>
                                                             <label htmlFor="example-number-input" className="col-sm-2 col-form-label text-right">Ending date</label>
                                                             <div className="col-sm-4">
-                                                                <input className="form-control" type="datetime-local" defaultValue="2011-08-19T13:45:00" id="example-datetime-local-input"
-                                                                    name="closingDate"
-                                                                    value={this.state.closingDate}
+                                                                <input className="form-control" type="date" defaultValue="2011-08-19T13:45:00" id="example-datetime-local-input"
+                                                                    name="available_until"
+                                                                    value={this.state.available_until}
                                                                     onChange={this.onChange}
                                                                     required />
-                                                                    <label htmlFor="example-number-input" className="col-sm-12 col-form-label text-right">{this.state.closingDate}</label>
-
                                                             </div>
 
                                                         </div>
@@ -264,17 +173,15 @@ class AdminCreateEvent extends Component {
                                                     </div>
                                                 </div>
                                                 <div className="button-items">
-                                                    <button className="btn btn-outline-success waves-effect waves-light float-right" onClick={this.onSubmit}>Update</button>
-                                                    <button className="btn btn-outline-danger waves-effect waves-light float-left" onClick={this.onDelete}>Delete</button>
-
-                                                    {/* <a href="emp-job-list.html" type="button" className="btn btn-outline-danger waves-effect float-left">Delete</a> */}
+                                                    <button className="btn btn-outline-success waves-effect waves-light float-right" onClick={this.onSubmit}>Create</button>
+                                                    <a href="emp-job-list.html" type="button" className="btn btn-outline-warning waves-effect float-left">Cancel</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <footer className="footer text-center text-sm-left">
-                                    © 2021 JobBank
+                                    © 2021 Agrocare
                                 </footer>
                             </div>
                         </div>
@@ -283,4 +190,4 @@ class AdminCreateEvent extends Component {
         );
     }
 }
-export default AdminCreateEvent;
+export default EditProduct;

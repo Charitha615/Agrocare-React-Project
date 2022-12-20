@@ -111,13 +111,7 @@ class QAPage extends Component {
                 <div className="col-sm-12">
                   <div className="page-title-box">
                     <div className="row">
-                      <div className="col">
-                        <h4 className="page-title">Applied Job List</h4>
-                        <ol className="breadcrumb">
-                          <li className="breadcrumb-item"><a href="javascript:void(0);">JobBank</a></li>
-                          <li className="breadcrumb-item active">Apply Jobs</li>
-                        </ol>
-                      </div>
+                 
 
                       <Daybar />
 
