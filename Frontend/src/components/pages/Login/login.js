@@ -49,7 +49,19 @@ class Login extends Component {
 
         const userRoleStatus = (decoded.result.user_type);
       
-        if (userRoleStatus === "farmer") {
+        if (userRoleStatus === "Farmer") {
+         
+          console.log("userRoleStatus", userRoleStatus);
+          // localStorage.setItem("LocalEmployerID");
+          toast.success("You login as a Farmer");
+          // localStorage.setItem("LocalEmployerID");
+          // this.props.history.push("/applicantHome");
+          window.location.href = "/FarmerHomePage";
+      
+  
+        }
+
+        if (userRoleStatus === "Customer") {
          
           console.log("userRoleStatus", userRoleStatus);
           // localStorage.setItem("LocalEmployerID");

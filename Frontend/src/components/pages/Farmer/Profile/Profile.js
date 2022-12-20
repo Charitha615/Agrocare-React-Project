@@ -141,6 +141,11 @@ class FarmerProfile extends Component {
                         <hr />
                         {/* <a href="/ApplicantAppliedJobList" type="button" className="btn btn-outline-success waves-effect float-left" style={{ marginLeft: "280px" }}
                         >Applied vacancies</a> */}
+
+                        <button type="button" className="btn btn-danger waves-effect waves-light"
+                        >Delete Profile</button>
+                        <a href="/EditProfile" >  <button type="button" className="btn btn-warning waves-effect waves-light ml-4"
+                        >Update Profile</button></a>
                       </div>
                     </div>
                   </div>

@@ -118,17 +118,6 @@ class FarmerQuestions extends Component {
                                   required />
                               </div>
                             </div>
-
-                            {/* <div className="form-group row">
-                              <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Answer</label>
-                              <div className="col-sm-10">
-                                <input className="form-control" type="text" placeholder="A Product Price is..." id="example-text-input"
-                                  name="unit_price"
-                                  value={this.state.unit_price}
-                                  onChange={this.onChange}
-                                  required />
-                              </div>
-                            </div> */}
                             <div className="form-group row">
                             </div>
                           </div>

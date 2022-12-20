@@ -32,7 +32,7 @@ class NavBar extends Component {
                     </div>
 
                     <div className="menu-content h-100" data-simplebar style={{ marginTop: "50px" }}>
-                   <div style={{color: "white"}}> Farmer </div>
+                    <div style={{color: "white"}}> Customer </div>
                         <ul className="metismenu left-sidenav-menu">
                             <li>
                                 <a href="/FarmerHomePage" ><i class="fas fa-home" style={{ color: "white" }}></i><span>Home</span></a>
