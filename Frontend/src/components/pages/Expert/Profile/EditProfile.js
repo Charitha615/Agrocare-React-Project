@@ -4,7 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../API/environment";
 import Select from "react-select";
-import Navbar from '../../farmerNavibar';
+import Navbar from '../../expertNavibar';
 import Daybar from '../../DayBar';
 
 const initialState = {
@@ -17,7 +17,7 @@ const initialState = {
 
 const Token = localStorage.getItem("Token");
 
-class EditProduct extends Component {
+class EditProfile extends Component {
 
     constructor(props) {
         super(props);
@@ -90,7 +90,7 @@ class EditProduct extends Component {
                                         <div className="page-title-box">
                                             <div className="row">
                                                 <div className="col">
-                                                    <h4 className="page-title">Edit Product</h4>
+                                                    <h4 className="page-title">Edit Profile</h4>
                                                     
                                                 </div>
                                             </div>
@@ -102,16 +102,16 @@ class EditProduct extends Component {
                                     <div className="col-lg-12">
                                         <div className="card">
                                             <div className="card-header">
-                                                <h4 className="card-title">Update your Product</h4>
+                                                <h4 className="card-title">Update your Profile</h4>
 
                                             </div>
                                             <div className="card-body">
                                                 <div className="row">
                                                     <div className="col-lg-12">
                                                         <div className="form-group row">
-                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Product Name</label>
+                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">First Name</label>
                                                             <div className="col-sm-10">
-                                                                <input className="form-control" type="text" placeholder="Product Name is..." id="example-text-input"
+                                                                <input className="form-control" type="text" placeholder="" id="example-text-input"
                                                                     name="product_name"
                                                                     value={this.state.product_name}
                                                                     onChange={this.onChange}
@@ -120,9 +120,9 @@ class EditProduct extends Component {
                                                         </div>
 
                                                         <div className="form-group row">
-                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Product Price</label>
+                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Last Name</label>
                                                             <div className="col-sm-10">
-                                                                <input className="form-control" type="text" placeholder="A Product Price is..." id="example-text-input"
+                                                                <input className="form-control" type="text" placeholder="" id="example-text-input"
                                                                     name="unit_price"
                                                                     value={this.state.unit_price}
                                                                     onChange={this.onChange}
@@ -134,9 +134,9 @@ class EditProduct extends Component {
 
 
                                                         <div className="form-group row">
-                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Products quantity</label>
-                                                            <div className="col-sm-10">
-                                                                <input className="form-control" type="text" placeholder="Products quantities are..." id="example-text-input"
+                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">NIC</label>
+                                                            <div className="col-sm-4">
+                                                                <input className="form-control" type="text" placeholder="" id="example-text-input"
                                                                     name="quantity"
                                                                     value={this.state.quantity}
                                                                     onChange={this.onChange}
@@ -147,9 +147,9 @@ class EditProduct extends Component {
 
 
                                                         <div className="form-group row" style={{ marginTop: "40px" }}>
-                                                            <label htmlFor="example-number-input" className="col-sm-2 col-form-label text-right">Starting date</label>
+                                                            <label htmlFor="example-number-input" className="col-sm-2 col-form-label text-right">Provice</label>
                                                             <div className="col-sm-4">
-                                                                <input className="form-control" type="date" defaultValue="2011-08-19T13:45:00" id="example-datetime-local-input"
+                                                                <input className="form-control" type="text"  id="example-datetime-local-input"
                                                                     name="available_from"
                                                                     value={this.state.available_from}
                                                                     onChange={this.onChange}
@@ -158,9 +158,9 @@ class EditProduct extends Component {
 
                                                         </div>
                                                         <div className="form-group row" style={{ marginTop: "40px" }}>
-                                                            <label htmlFor="example-number-input" className="col-sm-2 col-form-label text-right">Ending date</label>
+                                                            <label htmlFor="example-number-input" className="col-sm-2 col-form-label text-right">District</label>
                                                             <div className="col-sm-4">
-                                                                <input className="form-control" type="date" defaultValue="2011-08-19T13:45:00" id="example-datetime-local-input"
+                                                                <input className="form-control" type="text"  id="example-datetime-local-input"
                                                                     name="available_until"
                                                                     value={this.state.available_until}
                                                                     onChange={this.onChange}
@@ -173,7 +173,7 @@ class EditProduct extends Component {
                                                     </div>
                                                 </div>
                                                 <div className="button-items">
-                                                    <button className="btn btn-outline-success waves-effect waves-light float-right" onClick={this.onSubmit}>Create</button>
+                                                    <button className="btn btn-outline-success waves-effect waves-light float-right" onClick={this.onSubmit}>Update</button>
                                                     <a href="emp-job-list.html" type="button" className="btn btn-outline-warning waves-effect float-left">Cancel</a>
                                                 </div>
                                             </div>
@@ -190,4 +190,4 @@ class EditProduct extends Component {
         );
     }
 }
-export default EditProduct;
+export default EditProfile;

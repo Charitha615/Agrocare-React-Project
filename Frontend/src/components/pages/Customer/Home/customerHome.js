@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../API/environment";
-import Navbar from '../../farmerNavibar';
+import Navbar from '../../customerNavibar';
 import Daybar from '../../DayBar';
 
 
 const UserID = localStorage.getItem("LocalUserID");
 
-class FarmerHome extends Component {
+class CustomerHome extends Component {
 
     constructor(props) {
         super(props);
@@ -263,4 +263,4 @@ class FarmerHome extends Component {
         );
     }
 }
-export default FarmerHome;
+export default CustomerHome;

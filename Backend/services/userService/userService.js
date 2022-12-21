@@ -8,6 +8,10 @@ const {STORAGE} = require("../../constants/const");
 module.exports = {
 
     registerUser: async (body) => {
+        const user = await getDbUserByEmail(body.email);
+        if (user) {
+            throw new Error("User already exists.")
+        }
         const salt = genSaltSync(10);
         body.password = hashSync(body.password, salt);
 

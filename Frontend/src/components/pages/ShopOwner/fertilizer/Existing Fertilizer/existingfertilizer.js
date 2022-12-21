@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
 import { APIURL } from "../../../../API/environment";
 import { toast } from "react-toastify";
-import Navbar from '../../../farmerNavibar';
+import Navbar from '../../../shopOwnerNavBar';
 import Daybar from '../../../DayBar';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 
 const UserID = localStorage.getItem("LocalUserID");
 // const UserID = "60f9393bf9010e001577b6ea";
@@ -103,8 +100,8 @@ class CreateProductList extends Component {
               </div>
               <div className="row">
                 <li className="list-inline-item">
-                  <a href="/AddProduct"><button type="button" className="btn btn-success btn-sm" style={{ marginLeft: "1050px" }}
-                  >Add Product</button></a>
+                  <a href="/Addfertilizer"><button type="button" className="btn btn-success btn-sm" style={{ marginLeft: "1050px" }}
+                  >Add Fertilizer</button></a>
                 </li>
                 <div className="col-12">
                   <div className="card">
@@ -114,7 +111,7 @@ class CreateProductList extends Component {
                       <div className="table-responsive">
                         <div id="viewtable">
                           <h3 style={{ 'textAlign': 'center' }}>
-                            Created Product List
+                            Added Fertilizer List
                           </h3>
                           <table className="table  table-bordered" >
                             <thead>
