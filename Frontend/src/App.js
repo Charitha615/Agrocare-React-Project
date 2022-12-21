@@ -33,7 +33,7 @@ import ExpertViewForum from "./components/pages/Expert/Forum/ViewForum";
 import ExpertAddAnswer from "./components/pages/Expert/Forum/AddQuestions";
 
 //Customer
-import CustomerHomePage from "./components/pages/Customer/Home/CustomerHome";
+import CustomerHomePage from "./components/pages/Customer/Home/customerHome"
 
 
 

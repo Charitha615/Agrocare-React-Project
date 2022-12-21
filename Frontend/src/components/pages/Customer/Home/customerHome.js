@@ -75,7 +75,7 @@ class CustomerHome extends Component {
         localStorage.setItem("ViewedJobjob_type", job_type)
 
 
-        window.location = "/ApplicantViewVacancy"
+        // window.location = "/ApplicantViewVacancy"
 
 
     }
@@ -219,7 +219,7 @@ class CustomerHome extends Component {
                                                         </>
                                                     )}
 
-                                                    {item.isOpen == 0 && (
+                                               
                                                         <>
 
                                                             <button type="button" className="btn btn-primary waves-effect waves-light btn-block"
@@ -238,7 +238,7 @@ class CustomerHome extends Component {
                                                                     )}><i className="mdi mdi-check-all mr-2" />View</button>
 
                                                         </>
-                                                    )}
+                                          
 
 
                                                 </div>
