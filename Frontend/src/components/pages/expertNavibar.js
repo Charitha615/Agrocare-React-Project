@@ -32,17 +32,21 @@ class NavBar extends Component {
                     </div>
 
                     <div className="menu-content h-100" data-simplebar style={{ marginTop: "50px" }}>
-                        <div style={{ color: "white" }}> Customer </div>
+                   <div style={{color: "white"}}> Expert </div>
                         <ul className="metismenu left-sidenav-menu">
                             <li>
-                                <a href="/CustomerHomePage" ><i class="fas fa-home" style={{ color: "white" }}></i><span>Home</span></a>
+                                <a href="/ExpertHomePage" ><i class="fas fa-home" style={{ color: "white" }}></i><span>Home</span></a>
                             </li>
-
+                          
+                         
+                            <li>
+                                <a href="/ExpertProfile" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-user-alt" style={{ color: "white" }} /><span>My profile</span></a>
+                            </li>
 
                             <li>
-                                <a href="/FarmerProfile" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-user-alt" style={{ color: "white" }} /><span>My profile</span></a>
+                                <a href="/ExpertViewForum"><i data-feather="grid" className="align-self-center fas fa-calendar-week " style={{ color: "white" }} /><span>Forum</span><span className="menu-arrow"></span></a>
+                           
                             </li>
-
 
                             <li>
                                 <a href="/login" style={{ marginTop: "320px" }}><i data-feather="layers" class="align-self-center fas fa-sign-out-alt" style={{ color: "white" }}></i><span>Log out</span></a>

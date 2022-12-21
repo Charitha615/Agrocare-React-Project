@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../API/environment";
-import Navbar from '../../farmerNavibar';
+import Navbar from '../../expertNavibar';
 import Daybar from '../../DayBar';
 
 
 const UserID = localStorage.getItem("LocalUserID");
 
-class StudentJobList extends Component {
+class ExpertHomePage extends Component {
 
     constructor(props) {
         super(props);
@@ -22,7 +22,13 @@ class StudentJobList extends Component {
 
 
         this.state = {
-            Jobs: [],
+            Products : [
+                { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+                { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+                { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+                { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+                { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" }
+              ],
             ApprovedTopList: [],
             AppliedJobs: [],
             ApproveStatus: "Approved",
@@ -81,8 +87,8 @@ class StudentJobList extends Component {
         axios.get(`${APIURL}/vacancy/getAllJobs`)
 
             .then(response => {
-                this.setState({ Jobs: response.data.data });
-                console.log("All jobs response ", response.data.data);
+                this.setState({ Products: response.data.data });
+                console.log("All Products response ", response.data.data);
             })
 
 
@@ -96,7 +102,7 @@ class StudentJobList extends Component {
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
-        console.log("jobs", this.state.searchname)
+        console.log("Products", this.state.searchname)
     }
 
     onSearch(event) {
@@ -140,19 +146,13 @@ class StudentJobList extends Component {
                             </div>
 
                             <div className="row">
-                                {/* <div className="col-lg-6">
-                                    <ul className="list-inline">
-                                        <li className="list-inline-item">
-                                            <h5 className="mt-0">Here the list of all Avalable Jobs for you. <span className="badge badge-pink"></span></h5>
-                                        </li>
-                                    </ul>
-                                </div> */}
+                    
 
                                 <div className="col-lg-6 text-right">
                                     <div className="text-right">
                                         <ul className="list-inline">
                                             <li className="list-inline-item">
-                                              DD
+                                              
                                             </li>
                                         </ul>
                                     </div>
@@ -160,65 +160,22 @@ class StudentJobList extends Component {
 
                             </div>
 
-                            <h1 className="page-title">All Product</h1>
+                            <h1 className="page-title">All Products</h1>
 
-                            <div className="row justify-content-center" style={{ marginTop: "40px" }}>
-                                {this.state.ApprovedTopList.length > 0 && this.state.ApprovedTopList.map((item, index) => (
-                                    <div className="col-md-6 col-lg-3">
-                                        <div className="card report-card">
-                                            <div className="card-body">
-                                                <div className="row d-flex justify-content-center">
-                                                    <div className="col">
-                                                        <p className="text-dark mb-1 font-weight-semibold" style={{ fontSize: "20px", marginTop: "-20px" }}>
-                                                            {item.job_title}
-                                                        </p>
-                                                        <h3 className="my-2"></h3>
-                                                        <p className="mb-0 text-truncate text-muted">
-                                                            <span className="text-success">
-
-                                                                Closing Date
-                                                            </span>
-
-                                                        </p>
-                                                        {item.closing_date}
-                                                    </div>
-                                                    <div className="col-auto align-self-center">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {/* <button type="button" className="btn btn-primary waves-effect waves-light btn-block"><i className="mdi mdi-check-all mr-2" />View</button> */}
-                                            <button type="button" className="btn btn-primary waves-effect waves-light btn-block"
-                                                                onClick={e => this.applyJob
-                                                                    (
-                                                                        e,
-                                                                        item._id,
-                                                                        item.closing_date,
-                                                                        item.createdAt,
-                                                                        item.employerID,
-                                                                        item.employerName,
-                                                                        item.job_category,
-                                                                        item.job_description,
-                                                                        item.job_title,
-                                                                        item.job_type
-                                                                    )}><i className="mdi mdi-check-all mr-2" />View</button>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
 
                             <div className="row" style={{ marginTop: "40px" }}>
 
-                                {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
+                                {this.state.Products.length > 0 && this.state.Products.map((item, index) => (
 
                                     <div className="col-lg-4" key={index} >
-                                        <div className="card" style={{ height: "400px", width: "350px" }}>
+                                        <div className="card" style={{ height: "300px", width: "350px" }}>
                                             <div className="card-body">
                                                 <div className="media mb-3">
                                                     <img src="assets/images/widgets/project2.jpg" alt="" className="thumb-md rounded-circle" />
                                                     <div className="media-body align-self-center text-truncate ml-3">
-                                                        <h4 className="m-0 font-weight-semibold text-dark font-16">{item.job_title}</h4>
-                                                        <p className="text-muted  mb-0 font-13"><span className="text-dark">Employer:
-                                                        </span>{item.employerName}</p>
+                                                        <h4 className="m-0 font-weight-semibold text-dark font-16">{item.title}</h4>
+                                                        <p className="text-muted  mb-0 font-13"><span className="text-dark">Price:
+                                                        </span>{item.price}</p>
                                                     </div>
 
                                                 </div>
@@ -228,7 +185,7 @@ class StudentJobList extends Component {
                                                     <div className="col">
                                                         <div className="mt-3">
 
-                                                            <p className="mb-0 font-weight-semibold">Job Description</p>
+                                                            <p className="mb-0 font-weight-semibold">Product Quantity</p>
                                                         </div>
                                                     </div>
 
@@ -236,14 +193,18 @@ class StudentJobList extends Component {
 
                                                 </div>
 
-                                                <div style={{ marginTop: "-10px", height: "90px" }}>
-                                                    <p className="text-muted mt-4 mb-1">
-                                                        {item.job_description}
+                                                <div style={{ marginTop: "-10px", height: "" }}>
+                                                    <p className="text-muted mt-3">
+                                                        {item.quantity}
                                                     </p>
 
                                                 </div>
-                                                <div className="d-flex justify-content-between" style={{ marginTop: "60px" }}>
-                                                    <h6 className="font-weight-semibold">Closing Date : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6>
+                                                <div className="d-flex justify-content-between" style={{ marginTop: "" }}>
+                                                    <h6 className="font-weight-semibold">Starting Date : <span className="text-muted font-weight-normal"> {item.starting_date}</span></h6>
+
+                                                </div>
+                                                <div className="d-flex justify-content-between" style={{ marginTop: "" }}>
+                                                    <h6 className="font-weight-semibold">Ending Date : <span className="text-muted font-weight-normal"> {item.ending_date}</span></h6>
 
                                                 </div>
 
@@ -302,4 +263,4 @@ class StudentJobList extends Component {
         );
     }
 }
-export default StudentJobList;
+export default ExpertHomePage;

@@ -1,0 +1,187 @@
+import React, { Component } from "react";
+import axios from "axios";
+import { APIURL } from "../../../../API/environment";
+import { toast } from "react-toastify";
+import Navbar from '../../../shopOwnerNavBar';
+import Daybar from '../../../DayBar';
+
+const UserID = localStorage.getItem("LocalUserID");
+// const UserID = "60f9393bf9010e001577b6ea";
+const Token = localStorage.getItem("Token");
+
+class CreateProductList extends Component {
+
+  constructor(props) {
+    super(props);
+    this.navigateWithID = this.navigateWithID.bind(this);
+    this.RollBack = this.RollBack.bind(this);
+
+    this.state = {
+      Products : [
+        { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+        { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+        { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+        { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+        { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" }
+      ]
+
+    }
+  }
+
+
+
+  RollBack(e, jobID) {
+    console.log(jobID)
+
+    axios.delete(`${APIURL}/Applicant/deleteappliedJob/${jobID}`)
+
+      .then((res) => {
+        console.log("res", res);
+        if (res.data.code === 200) {
+          console.log("res.data.code", res.data.code);
+
+          toast.success("Applied Job is Deleted!");
+
+
+          window.setTimeout(function () {
+            window.location.reload();
+          }, 1500);
+        } else {
+          toast.error(res.data.message);
+
+        }
+      });
+  }
+
+  navigateWithID(e, jobsId) {
+    window.localStorage.removeItem("JobID");
+    localStorage.setItem("JobID", jobsId)
+
+    window.location.href = "/UpdateProduct";
+  }
+
+
+
+  componentDidMount() {
+
+    axios.get(`${APIURL}/Applicant/getAppliedJob/${UserID}`)
+
+      .then(response => {
+
+        console.log(" data getAppliedJob", response.data.data);
+        this.setState({ Products: response.data.data });
+      })
+  }
+
+  render() {
+    return (
+      <div>
+        <Navbar />
+
+        <div className="page-wrapper">
+
+          <div className="page-content">
+            <div className="container-fluid">
+
+              <div className="row" style={{ width: "1200px" }}>
+                <div className="col-sm-12">
+                  <div className="page-title-box">
+                    <div className="row">
+                
+
+                      <Daybar />
+
+                    </div>
+                  </div>
+
+
+                </div>
+
+              </div>
+              <div className="row">
+                <li className="list-inline-item">
+                  <a href="/Addfertilizer"><button type="button" className="btn btn-success btn-sm" style={{ marginLeft: "1050px" }}
+                  >Add Fertilizer</button></a>
+                </li>
+                <div className="col-12">
+                  <div className="card">
+                    <div className="card-header">
+                    </div>
+                    <div className="card-body">
+                      <div className="table-responsive">
+                        <div id="viewtable">
+                          <h3 style={{ 'textAlign': 'center' }}>
+                            Added Fertilizer List
+                          </h3>
+                          <table className="table  table-bordered" >
+                            <thead>
+                              <tr>
+                                <th>Title</th>
+                                <th>Price</th>
+                                <th>quantity</th>
+                                <th>Starting date</th>
+                                <th>Ending date</th>
+                                <th className="text-center">Status</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {this.state.Products.length > 0 && this.state.Products.map((item, index) => (
+
+
+
+                                <tr>
+                                  <td>{item.title}</td>
+                                  <td>{item.price}</td>
+                                  <td>{item.quantity}</td>
+                                  <td>{item.starting_date}</td>
+                                  <td>{item.ending_date}</td>
+                                  <td className="text-center">
+                                    <div className="button-items">
+
+                                    
+                                        <>
+
+                                          <button type="button" className="btn btn-warning waves-effect waves-light"
+                                            onClick={e => this.navigateWithID(e, item._id)}>Edit</button>
+                                          <button type="button" className="btn btn-danger waves-effect waves-light"
+                                            onClick={e => this.RollBack(e, item._id)}>Delete</button>
+                           
+
+                                        </>
+                              
+
+                                
+                                        <>
+
+                                          <span className=" badge badge-soft-success ml-5">Online</span>
+
+                                        </>
+                              
+                                    </div>
+                                  </td>
+                                </tr>
+                              ))}
+
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <span className="float-right">
+
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <footer className="footer text-center text-sm-left">
+            </footer>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+export default CreateProductList;

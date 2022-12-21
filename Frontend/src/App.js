@@ -11,13 +11,29 @@ import login from "./components/pages/Login/login";
 import FarmerHomePage from "./components/pages/Farmer/Home/farmerHome";
 import AddProduct from "./components/pages/Farmer/Product/CreateProduct";
 import CreatedProductList from "./components/pages/Farmer/Product/CreatedProductList/createdProductList";
-import UpdateProduct from  "./components/pages/Farmer/Product/EditProduct";
-import FarmerProfile from  "./components/pages/Farmer/Profile/Profile";
-import FarmerQuestionsAdd from  "./components/pages/Farmer/Forum/AddQuestions";
-import FarmerViewForum from  "./components/pages/Farmer/Forum/ViewForum";
-import EditProfile from  "./components/pages/Farmer/Profile/EditProfile";
+import UpdateProduct from "./components/pages/Farmer/Product/EditProduct";
+import FarmerProfile from "./components/pages/Farmer/Profile/Profile";
+import FarmerQuestionsAdd from "./components/pages/Farmer/Forum/AddQuestions";
+import FarmerViewForum from "./components/pages/Farmer/Forum/ViewForum";
+import EditProfile from "./components/pages/Farmer/Profile/EditProfile";
 
+// Shop Owner 
+import ShopOwnerHomePage from "./components/pages/ShopOwner/Home/shopOwnerHome";
+import Addfertilizer from "./components/pages/ShopOwner/fertilizer/Addfertilizer";
+import CreatedfertilizerList from "./components/pages/ShopOwner/fertilizer/Existing Fertilizer/existingfertilizer";
+import Updatefertilizer from "./components/pages/ShopOwner/fertilizer/EditFertilizer";
+import ShopOwnerProfile from "./components/pages/ShopOwner/Profile/Profile";
+import ShopOwnerProfileEdit from "./components/pages/ShopOwner/Profile/EditProfile";
 
+// Expert
+import ExpertHomePage from "./components/pages/Expert/Home/ExpertHome";
+import ExpertProfile from "./components/pages/Expert/Profile/Profile";
+import ExpertProfileEdit from "./components/pages/Expert/Profile/EditProfile";
+import ExpertViewForum from "./components/pages/Expert/Forum/ViewForum";
+import ExpertAddAnswer from "./components/pages/Expert/Forum/AddQuestions";
+
+//Customer
+import CustomerHomePage from "./components/pages/Customer/Home/CustomerHome";
 
 
 
@@ -52,8 +68,30 @@ function App() {
           <Route path="/addQuestions" component={FarmerQuestionsAdd} />
           <Route path="/FarmerViewForum" component={FarmerViewForum} />
           <Route path="/EditProfile" component={EditProfile} />
-          
-          
+
+
+          {/* Shop Owner */}
+
+          <Route path="/ShopOwnerHome" component={ShopOwnerHomePage} />
+          <Route path="/Addfertilizer" component={Addfertilizer} />
+          <Route path="/CreatedfertilizerList" component={CreatedfertilizerList} />
+          <Route path="/Updatefertilizer" component={Updatefertilizer} />
+          <Route path="/ShopOwnerProfile" component={ShopOwnerProfile} />
+          <Route path="/ShopOwnerProfileEdit" component={ShopOwnerProfileEdit} />
+
+          {/* Expert */}
+
+          <Route path="/ExpertHomePage" component={ExpertHomePage} />
+          <Route path="/ExpertProfile" component={ExpertProfile} />
+          <Route path="/ExpertProfileEdit" component={ExpertProfileEdit} />
+          <Route path="/ExpertViewForum" component={ExpertViewForum} />
+          <Route path="/ExpertAddAnswer" component={ExpertAddAnswer} />
+
+          {/* Customer */}
+
+          <Route path="/CustomerHomePage" component={CustomerHomePage} />
+
+
 
         </Switch>
       </Router>

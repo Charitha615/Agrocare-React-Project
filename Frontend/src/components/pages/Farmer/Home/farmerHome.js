@@ -9,7 +9,7 @@ import Daybar from '../../DayBar';
 
 const UserID = localStorage.getItem("LocalUserID");
 
-class StudentJobList extends Component {
+class FarmerHome extends Component {
 
     constructor(props) {
         super(props);
@@ -263,4 +263,4 @@ class StudentJobList extends Component {
         );
     }
 }
-export default StudentJobList;
+export default FarmerHome;

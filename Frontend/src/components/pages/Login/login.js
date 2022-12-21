@@ -60,6 +60,29 @@ class Login extends Component {
       
   
         }
+        if (userRoleStatus === "Shop owner") {
+         
+          console.log("userRoleStatus", userRoleStatus);
+          // localStorage.setItem("LocalEmployerID");
+          toast.success("You login as a Farmer");
+          // localStorage.setItem("LocalEmployerID");
+          // this.props.history.push("/applicantHome");
+          window.location.href = "/ShopOwnerHome";
+      
+  
+        }
+
+        if (userRoleStatus === "Expert") {
+         
+          console.log("userRoleStatus", userRoleStatus);
+          // localStorage.setItem("LocalEmployerID");
+          toast.success("You login as a Farmer");
+          // localStorage.setItem("LocalEmployerID");
+          // this.props.history.push("/applicantHome");
+          window.location.href = "/ExpertHomePage";
+      
+  
+        }
 
         if (userRoleStatus === "Customer") {
          
@@ -68,7 +91,7 @@ class Login extends Component {
           toast.success("You login as a Farmer");
           // localStorage.setItem("LocalEmployerID");
           // this.props.history.push("/applicantHome");
-          window.location.href = "/FarmerHomePage";
+          window.location.href = "/CustomerHomePage";
       
   
         }

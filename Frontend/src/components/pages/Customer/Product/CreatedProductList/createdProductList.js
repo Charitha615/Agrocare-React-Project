@@ -12,17 +12,21 @@ const UserID = localStorage.getItem("LocalUserID");
 // const UserID = "60f9393bf9010e001577b6ea";
 const Token = localStorage.getItem("Token");
 
-class QAPage extends Component {
+class CreateProductList extends Component {
 
   constructor(props) {
     super(props);
-    this.applyJob = this.applyJob.bind(this);
     this.navigateWithID = this.navigateWithID.bind(this);
     this.RollBack = this.RollBack.bind(this);
 
-
     this.state = {
-      Jobs: [],
+      Products : [
+        { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+        { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+        { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+        { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+        { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" }
+      ]
 
     }
   }
@@ -56,35 +60,10 @@ class QAPage extends Component {
     window.localStorage.removeItem("JobID");
     localStorage.setItem("JobID", jobsId)
 
-    window.location.href = "/EditAppliedVacancy";
+    window.location.href = "/UpdateProduct";
   }
 
-  applyJob(e, CID, CName, DDate, JTitle, JID, JDec, SDate) {
 
-    e.preventDefault();
-
-
-    let JobData = {
-
-      UserID: localStorage.getItem("LocalUserID"),
-      UserFirstName: localStorage.getItem("LocalUserFirstName"),
-      UserLastName: localStorage.getItem("LocalUserLastName"),
-      UserEmailtName: localStorage.getItem("LocalUserEmail"),
-      employerID: CID,
-      employerName: CName,
-      Deadline_date: DDate,
-      Start_date: SDate,
-      JobTitle: JTitle,
-      JobID: JID,
-      jobDescription: JDec,
-      isAprove: '2'
-    }
-
-    console.log("JobData ", JobData)
-    window.location.href = "/Contract";
-    localStorage.setItem("employerName", JobData.employerName)
-
-  }
 
   componentDidMount() {
 
@@ -93,7 +72,7 @@ class QAPage extends Component {
       .then(response => {
 
         console.log(" data getAppliedJob", response.data.data);
-        this.setState({ Jobs: response.data.data });
+        this.setState({ Products: response.data.data });
       })
   }
 
@@ -111,7 +90,7 @@ class QAPage extends Component {
                 <div className="col-sm-12">
                   <div className="page-title-box">
                     <div className="row">
-                 
+                
 
                       <Daybar />
 
@@ -124,8 +103,8 @@ class QAPage extends Component {
               </div>
               <div className="row">
                 <li className="list-inline-item">
-                  <a href="/ApplicantReport"><button type="button" className="btn btn-success btn-sm" style={{ marginLeft: "1050px" }}
-                  >Genarate Report</button></a>
+                  <a href="/AddProduct"><button type="button" className="btn btn-success btn-sm" style={{ marginLeft: "1050px" }}
+                  >Add Product</button></a>
                 </li>
                 <div className="col-12">
                   <div className="card">
@@ -140,54 +119,48 @@ class QAPage extends Component {
                           <table className="table  table-bordered" >
                             <thead>
                               <tr>
-                                <th>Job</th>
-                                <th>Company</th>
-                                <th>Description</th>
-                                <th>Deadline</th>
+                                <th>Title</th>
+                                <th>Price</th>
+                                <th>quantity</th>
+                                <th>Starting date</th>
+                                <th>Ending date</th>
                                 <th className="text-center">Status</th>
 
                               </tr>
                             </thead>
                             <tbody>
-                              {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
+                              {this.state.Products.length > 0 && this.state.Products.map((item, index) => (
 
 
 
                                 <tr>
-                                  <td>{item.job_title}</td>
-                                  <td>{item.JobemployerName}</td>
-                                  <td>{item.job_description}</td>
-                                  <td>{item.Jobclosing_date}</td>
+                                  <td>{item.title}</td>
+                                  <td>{item.price}</td>
+                                  <td>{item.quantity}</td>
+                                  <td>{item.starting_date}</td>
+                                  <td>{item.ending_date}</td>
                                   <td className="text-center">
                                     <div className="button-items">
 
-                                      {item.IsApprove == 0 && (
+                                    
                                         <>
 
                                           <button type="button" className="btn btn-warning waves-effect waves-light"
                                             onClick={e => this.navigateWithID(e, item._id)}>Edit</button>
                                           <button type="button" className="btn btn-danger waves-effect waves-light"
-                                            onClick={e => this.RollBack(e, item._id)}>Roll Back</button>
-                                          <span className=" badge badge-soft-warning">Pending</span>
+                                            onClick={e => this.RollBack(e, item._id)}>Delete</button>
+                           
 
                                         </>
-                                      )}
+                              
 
-                                      {item.IsApprove == 2 && (
+                                
                                         <>
 
-                                          <span className=" badge badge-soft-danger">Reject</span>
+                                          <span className=" badge badge-soft-success ml-5">Online</span>
 
                                         </>
-                                      )}
-
-                                      {item.IsApprove == 1 && (
-                                        <>
-
-                                          <span className=" badge badge-soft-success">Selected</span>
-
-                                        </>
-                                      )}
+                              
                                     </div>
                                   </td>
                                 </tr>
@@ -214,4 +187,4 @@ class QAPage extends Component {
     );
   }
 }
-export default QAPage;
+export default CreateProductList;

@@ -17,7 +17,7 @@ const initialState = {
 
 const Token = localStorage.getItem("Token");
 
-class CreateProduct extends Component {
+class EditProduct extends Component {
 
     constructor(props) {
         super(props);
@@ -90,7 +90,7 @@ class CreateProduct extends Component {
                                         <div className="page-title-box">
                                             <div className="row">
                                                 <div className="col">
-                                                    <h4 className="page-title">Create Product</h4>
+                                                    <h4 className="page-title">Edit Product</h4>
                                                     
                                                 </div>
                                             </div>
@@ -102,7 +102,7 @@ class CreateProduct extends Component {
                                     <div className="col-lg-12">
                                         <div className="card">
                                             <div className="card-header">
-                                                <h4 className="card-title">New Product</h4>
+                                                <h4 className="card-title">Update your Product</h4>
 
                                             </div>
                                             <div className="card-body">
@@ -181,7 +181,7 @@ class CreateProduct extends Component {
                                     </div>
                                 </div>
                                 <footer className="footer text-center text-sm-left">
-                                    © 2022 Agrocare
+                                    © 2021 Agrocare
                                 </footer>
                             </div>
                         </div>
@@ -190,4 +190,4 @@ class CreateProduct extends Component {
         );
     }
 }
-export default CreateProduct;
+export default EditProduct;
