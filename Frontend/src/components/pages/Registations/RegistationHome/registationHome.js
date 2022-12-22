@@ -41,11 +41,16 @@ class RegistationHome extends Component {
                   <div className='card-content'>
                     <h3>About the application</h3>
                     <p>
-                      These example sentences are selected automatically from
-                      various online news sources to reflect current usage of
-                      the word 'description.' Views expressed in the examples do
-                      not represent the opinion of Merriam-Webster or its
-                      editors. Send us feedback.
+                      Our purpose of this platform is to facilitate farmers in
+                      one platform. Farmers have to fave inconveniences when
+                      they try to sell their products and through this platform
+                      by connecting farners and Customers directly that issue is
+                      addressed. Likewise, farmers have to waste their time on
+                      finding fertilizer. Through this platform, farmers can
+                      check the availability of the fertilizers they want before
+                      they go. Moreover, to make a direct connection between
+                      farmers and agricultural Experts for getting supervision
+                      for Farmers' problems are provided in this platform.
                     </p>
                     <a href='/Register'>New Register</a>
                   </div>
