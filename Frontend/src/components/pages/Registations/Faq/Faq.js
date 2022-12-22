@@ -87,6 +87,7 @@ class RegistationHome extends Component {
                     data-toggle='collapse'
                     data-parent='#accordion'
                     href='#collapse2'
+                    style={{ backgroundColor: 'white',paddingTop:"10px"}}
                   >
                     2. How do I select the suitable usertype for myself?{' '}
                   </a>
@@ -109,6 +110,7 @@ class RegistationHome extends Component {
                     data-toggle='collapse'
                     data-parent='#accordion'
                     href='#collapse3'
+                    style={{ backgroundColor: 'white',paddingTop:"10px"}}
                   >
                     3. Should I have to log in to the system to view question
                     and answers forum?{' '}
