@@ -6,6 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import homeRegistation from "./components/pages/Registations/RegistationHome/registationHome";
 import Register from "./components/pages/Registations/Registation/Registation";
 import login from "./components/pages/Login/login";
+import faq from "./components/pages/Registations/Faq/Faq";
+import utype from "./components/pages/Registations/UserType/UserType";
 
 // Farmer 
 import FarmerHomePage from "./components/pages/Farmer/Home/farmerHome";
@@ -61,6 +63,8 @@ function App() {
           <Route path="/" exact component={homeRegistation} />
           <Route path="/Register" component={Register} />
           <Route path="/login" component={login} />
+          <Route path="/faq" component={faq} />
+          <Route path="/utype" component={utype} />
 
           {/* Farmer */}
 

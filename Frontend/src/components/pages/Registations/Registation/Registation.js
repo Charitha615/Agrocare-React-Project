@@ -81,6 +81,20 @@ class RegistationStudent extends Component {
   render() {
     return (
       <div className="SRbody">
+      <div class='topnav'>
+            <a class='active' href='/'>
+              Home
+            </a>
+            <a href='/faq'>FAQ</a>
+            <a href='/utype'>User Type</a>
+            <a
+            href='/login'
+            className='btn-login  Loginbtn'
+            style={{ marginTop: '1px' }}
+          >
+            Login
+          </a>
+          </div>
         <div className="container">
           <div className="row ">
             <div className="lottiefiles col-sm-12 col-md-4">
