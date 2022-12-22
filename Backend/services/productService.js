@@ -76,7 +76,9 @@ module.exports = {
     },
 
     getProduct:async (id)=> {
+       console.log(id)
        const product = await getProductById(id);
+       console.log(product)
        return product
     }
 }

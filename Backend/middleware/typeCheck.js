@@ -26,7 +26,8 @@ module.exports = {
         }
     },
     farmerOowner:(req,res,next)=>{
-        if (req.user.user_type === ROLES.FARMER || req.user.user_type === ROLES.OWNER){
+       console.log(req.user)
+       if (req.user.user_type === ROLES.FARMER || req.user.user_type === ROLES.OWNER){
             next()
         }
         else{

@@ -78,9 +78,9 @@ module.exports = {
         }
     },
     ROLES: {
-        FARMER: "farmer",
-        CUSTOMER: "customer",
-        OWNER: "owner",
-        EXPERT: "expert"
+        FARMER: "Farmer",
+        CUSTOMER: "Customer",
+        OWNER: "Owner",
+        EXPERT: "Expert"
     }
 }
