@@ -62,8 +62,19 @@ class ViewForum extends Component {
         axios.get(`${APIURL}/message/allQuestions`,config)
             .then(response => {
                 this.setState({ Questions: response.data });
-                console.log("response ", response.data);
+                console.log("response ", this.state.Questions);
+
             })
+    }
+
+    assignId(e,id,question){
+        e.preventDefault();
+        console.log(id,question)
+        window.localStorage.removeItem("questionId")
+        window.localStorage.removeItem("question")
+        localStorage.setItem("questionId",id)
+        localStorage.setItem("question",question)
+        window.location="/ExpertAddAnswer"
     }
 
     render() {
@@ -117,10 +128,11 @@ class ViewForum extends Component {
                                                             style={{ marginLeft: "1000px", marginTop: "-30px" }}
                                                             onClick={e => this.navigateWithID(e, item._id)}>Add Answer</button> */}
 
-                                                        <a href="/ExpertAddAnswer">
+                                                        
                                                             <button type="button" className="btn btn-warning"
                                                                 style={{ marginLeft: "1000px", marginTop: "-30px" }}
-                                                            >Add Answer</button></a>
+                                                                onClick={e=>this.assignId(e,item.question_id,item.question)}
+                                                            >Add Answer</button>
 
                                                     </div>
                                                 </div>

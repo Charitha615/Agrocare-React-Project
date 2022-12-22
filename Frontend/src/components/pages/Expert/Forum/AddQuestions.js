@@ -16,6 +16,8 @@ const initialState = {
 };
 
 const Token = localStorage.getItem("Token");
+const questionId = localStorage.getItem("questionId");
+const question = localStorage.getItem("question");
 
 class FarmerQuestions extends Component {
 
@@ -53,7 +55,7 @@ console.log(QuestionsDetails)
     }
 
     axios
-      .post(`${APIURL}/message/question`, QuestionsDetails, config)
+      .post(`${APIURL}/message/question/${questionId}`, QuestionsDetails, config)
       .then((res) => {
         console.log("res", res);
         if (res.status === 201) {
@@ -108,7 +110,7 @@ console.log(QuestionsDetails)
                             <div className="form-group row">
                               <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Question</label>
                               <div className="col-sm-10">
-                                <input className="form-control" type="text" placeholder="What sprays/pesticides/herbicides do you use?" id="example-text-input" readOnly
+                                <input className="form-control" type="text" placeholder={question} id="example-text-input" readOnly
                                   name="product_name"
                                   // value={this.state.product_name}
                                   // onChange={this.onChange}
