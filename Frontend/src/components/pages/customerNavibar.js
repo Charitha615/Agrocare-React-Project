@@ -40,7 +40,7 @@ class NavBar extends Component {
 
 
                             <li>
-                                <a href="/FarmerProfile" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-user-alt" style={{ color: "white" }} /><span>My profile</span></a>
+                                <a href="/CustomerProfile" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-user-alt" style={{ color: "white" }} /><span>My profile</span></a>
                             </li>
 
 

@@ -4,7 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../API/environment";
 import Select from "react-select";
-import Navbar from '../../farmerNavibar';
+import Navbar from '../../shopOwnerNavBar';
 import Daybar from '../../DayBar';
 
 const initialState = {
@@ -16,7 +16,7 @@ const initialState = {
 };
 
 const Token = localStorage.getItem("Token");
-
+const productId = localStorage.getItem("productId");
 class EditProduct extends Component {
 
     constructor(props) {
@@ -56,7 +56,7 @@ class EditProduct extends Component {
           }
 
         axios
-            .post(`${APIURL}/product/`, ProductDetails,config)
+            .patch(`${APIURL}/product/${productId}`, ProductDetails,config)
             .then((res) => {
                 console.log("res", res);
                 if (res.status === 201) {

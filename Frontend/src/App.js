@@ -34,6 +34,8 @@ import ExpertAddAnswer from "./components/pages/Expert/Forum/AddQuestions";
 
 //Customer
 import CustomerHomePage from "./components/pages/Customer/Home/customerHome"
+import CustomerProfile from "./components/pages/Customer/Profile/Profile"
+import CustomerProfileEdit from "./components/pages/Customer/Profile/EditProfile"
 
 
 
@@ -89,7 +91,9 @@ function App() {
 
           {/* Customer */}
 
-          <Route path="/CustomerHomePage" component={CustomerHomePage} />
+          <Route path="/CustomerHomePage" component={CustomerHomePage} />          
+          <Route path="/CustomerProfile" component={CustomerProfile} />
+          <Route path="/CustomerProfileEdit" component={CustomerProfileEdit} />
 
 
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-import Navbar from '../../farmerNavibar';
+import Navbar from '../../customerNavibar';
 import Daybar from '../../DayBar';
 import axios from "axios";
 import { APIURL } from "../../../API/environment";
@@ -16,6 +16,7 @@ const initialState = {
 };
 
 const ApplicantID = localStorage.getItem("LocalUserID")
+const token = localStorage.getItem("Token")
 class FarmerProfile extends Component {
 
 
@@ -30,21 +31,29 @@ class FarmerProfile extends Component {
 
   componentDidMount() {
 
-    console.log(ApplicantID)
+    let config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+            }
+    }
 
-    axios.get(`${APIURL}/applicantReg/getAllApplicantByID/${ApplicantID}`)
+    console.log(token)
+
+    axios.get(`${APIURL}/user/currentUser/`,config)
 
       .then(response => {
 
-        this.setState({ applicant: response.data.data });
+        this.setState({ applicant: response.data });
         console.log(" data applicant", this.state.applicant);
 
-        this.setState({ firstName: this.state.applicant.firstName });
-        this.setState({ lastName: this.state.applicant.lastName });
-        this.setState({ mobileNumber: this.state.applicant.mobileNumber });
+        this.setState({ firstName: this.state.applicant.first_name });
+        this.setState({ lastName: this.state.applicant.last_name });
+        this.setState({ mobileNumber: this.state.applicant.mobile_no });
         this.setState({ Field: this.state.applicant.Field });
         this.setState({ email: this.state.applicant.email });
-        this.setState({ ID: this.state.applicant._id });
+        this.setState({ nic: this.state.applicant.nic });
+        this.setState({ province: this.state.applicant.province });
+        this.setState({ ID: this.state.applicant.id });
       })
   }
 
@@ -116,7 +125,7 @@ class FarmerProfile extends Component {
                             <h6 className="mb-0">NIC</h6>
                           </div>
                           <div className="col-sm-9 text-secondary">
-                            {this.state.Field}
+                            {this.state.nic}
                           </div>
                         </div>
                         <hr />
@@ -144,7 +153,7 @@ class FarmerProfile extends Component {
 
                         <button type="button" className="btn btn-danger waves-effect waves-light"
                         >Delete Profile</button>
-                        <a href="/EditProfile" >  <button type="button" className="btn btn-warning waves-effect waves-light ml-4"
+                        <a href="/CustomerProfileEdit" >  <button type="button" className="btn btn-warning waves-effect waves-light ml-4"
                         >Update Profile</button></a>
                       </div>
                     </div>

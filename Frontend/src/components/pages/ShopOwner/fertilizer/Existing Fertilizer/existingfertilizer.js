@@ -7,7 +7,7 @@ import Daybar from '../../../DayBar';
 
 const UserID = localStorage.getItem("LocalUserID");
 // const UserID = "60f9393bf9010e001577b6ea";
-const Token = localStorage.getItem("Token");
+const token = localStorage.getItem("Token");
 
 class CreateProductList extends Component {
 
@@ -18,11 +18,11 @@ class CreateProductList extends Component {
 
     this.state = {
       Products : [
-        { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
-        { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
-        { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
-        { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
-        { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" }
+        // { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+        // { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+        // { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+        // { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+        // { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" }
       ]
 
     }
@@ -30,10 +30,10 @@ class CreateProductList extends Component {
 
 
 
-  RollBack(e, jobID) {
-    console.log(jobID)
+  RollBack(e, fertilizerId) {
+    // console.log(fertilizerId)
 
-    axios.delete(`${APIURL}/Applicant/deleteappliedJob/${jobID}`)
+    axios.delete(`${APIURL}/Applicant/deleteappliedJob/${fertilizerId}`)
 
       .then((res) => {
         console.log("res", res);
@@ -57,21 +57,31 @@ class CreateProductList extends Component {
     window.localStorage.removeItem("JobID");
     localStorage.setItem("JobID", jobsId)
 
-    window.location.href = "/UpdateProduct";
+    window.location.href = "/Updatefertilizer";
   }
 
-
-
   componentDidMount() {
-
-    axios.get(`${APIURL}/Applicant/getAppliedJob/${UserID}`)
+    let config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+          }
+  }
+    axios.get(`${APIURL}/product/allProducts?type=owner`,config)
 
       .then(response => {
 
-        console.log(" data getAppliedJob", response.data.data);
-        this.setState({ Products: response.data.data });
+        console.log(" data getAppliedJob", response.data);
+        this.setState({ Products: response.data});
       })
   }
+
+  assignId(e,id){
+    e.preventDefault();
+    console.log(id)
+    window.localStorage.removeItem("productId")
+    localStorage.setItem("productId",id)
+    window.location="/Updatefertilizer"
+}
 
   render() {
     return (
@@ -128,14 +138,12 @@ class CreateProductList extends Component {
                             <tbody>
                               {this.state.Products.length > 0 && this.state.Products.map((item, index) => (
 
-
-
                                 <tr>
-                                  <td>{item.title}</td>
-                                  <td>{item.price}</td>
+                                  <td>{item.product_name}</td>
+                                  <td>{item.unit_price}</td>
                                   <td>{item.quantity}</td>
-                                  <td>{item.starting_date}</td>
-                                  <td>{item.ending_date}</td>
+                                  <td>{item.available_from}</td>
+                                  <td>{item.available_until}</td>
                                   <td className="text-center">
                                     <div className="button-items">
 
@@ -143,9 +151,9 @@ class CreateProductList extends Component {
                                         <>
 
                                           <button type="button" className="btn btn-warning waves-effect waves-light"
-                                            onClick={e => this.navigateWithID(e, item._id)}>Edit</button>
+                                            onClick={e=>this.assignId(e,item.product_id)}>Edit</button>
                                           <button type="button" className="btn btn-danger waves-effect waves-light"
-                                            onClick={e => this.RollBack(e, item._id)}>Delete</button>
+                                            onClick={e => this.RollBack(e, item.product_id)}>Delete</button>
                            
 
                                         </>

@@ -5,6 +5,7 @@ import Daybar from '../../DayBar';
 import axios from "axios";
 import { APIURL } from "../../../API/environment";
 import { toast } from "react-toastify";
+import jwt_decode from "jwt-decode";
 
 const initialState = {
   firstName: "",
@@ -58,6 +59,23 @@ class ExpertProfile extends Component {
       })
   }
 
+  deleteUser(){
+    let config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+          }
+  }
+    const decoded = jwt_decode(token);
+    axios.get(`${APIURL}/user/${decoded.result.id}`,config)
+
+    .then(response => {
+
+      this.setState({ applicant: response.data });
+      console.log(" data applicant", this.state.applicant);
+
+      
+    })
+  }
 
   render() {
     return (
@@ -152,7 +170,7 @@ class ExpertProfile extends Component {
                         {/* <a href="/ApplicantAppliedJobList" type="button" className="btn btn-outline-success waves-effect float-left" style={{ marginLeft: "280px" }}
                         >Applied vacancies</a> */}
 
-                        <button type="button" className="btn btn-danger waves-effect waves-light"
+                        <button type="button" className="btn btn-danger waves-effect waves-light" onClick={this.deleteUser}
                         >Delete Profile</button>
                         <a href="/ExpertProfileEdit" >  <button type="button" className="btn btn-warning waves-effect waves-light ml-4"
                         >Update Profile</button></a>

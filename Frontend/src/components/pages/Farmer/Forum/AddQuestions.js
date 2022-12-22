@@ -39,15 +39,11 @@ class FarmerQuestions extends Component {
   onSubmit(event) {
     event.preventDefault();
 
-    let ProductDetails = {
-      product_name: this.state.product_name,
-      unit_price: this.state.unit_price,
-      available_until: this.state.available_until,
-      available_from: this.state.available_from,
-      quantity: this.state.quantity
+    let QuestionsDetails = {
+      question: this.state.question,
     };
 
-    console.log("Product Details: ", ProductDetails);
+    console.log("Product Details: ", QuestionsDetails);
 
     let config = {
       headers: {
@@ -56,7 +52,7 @@ class FarmerQuestions extends Component {
     }
 
     axios
-      .post(`${APIURL}/product/`, ProductDetails, config)
+      .post(`${APIURL}/message/question`, QuestionsDetails, config)
       .then((res) => {
         console.log("res", res);
         if (res.status === 201) {
@@ -112,8 +108,8 @@ class FarmerQuestions extends Component {
                               <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Question</label>
                               <div className="col-sm-10">
                                 <input className="form-control" type="text" placeholder="Type your question..." id="example-text-input"
-                                  name="product_name"
-                                  value={this.state.product_name}
+                                  name="question"
+                                  value={this.state.productquestion_name}
                                   onChange={this.onChange}
                                   required />
                               </div>

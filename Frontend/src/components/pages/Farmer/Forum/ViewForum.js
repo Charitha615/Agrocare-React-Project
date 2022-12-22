@@ -3,8 +3,10 @@ import axios from "axios";
 import { APIURL } from "../../../API/environment";
 import Navbar from '../../farmerNavibar';
 import Daybar from '../../DayBar';
+import jwt_decode from "jwt-decode";
 
 const UserID = localStorage.getItem("LocalUserID");
+const token = localStorage.getItem("Token");
 
 class ViewForum extends Component {
 
@@ -16,11 +18,11 @@ class ViewForum extends Component {
         this.state = {
 
             Questions: [
-                { title: "What sprays/pesticides/herbicides do you use?", ans: "Description is the pattern of narrative development that aims to make vivid a place, object, character, or group. Description is one of four rhetorical modes, along with exposition, argumentation, and narration. In practice it would be difficult to write literature that" },
-                { title: "What sprays/pesticides/herbicides do you use?", ans: "Description is the pattern of narrative development that aims to make vivid a place, object, character, or group. Description is one of four rhetorical modes, along with exposition, argumentation, and narration. In practice it would be difficult to write literature that" },
-                { title: "What sprays/pesticides/herbicides do you use?", ans: "Description is the pattern of narrative development that aims to make vivid a place, object, character, or group. Description is one of four rhetorical modes, along with exposition, argumentation, and narration. In practice it would be difficult to write literature that" },
-                { title: "What sprays/pesticides/herbicides do you use?", ans: "Description is the pattern of narrative development that aims to make vivid a place, object, character, or group. Description is one of four rhetorical modes, along with exposition, argumentation, and narration. In practice it would be difficult to write literature that" },
-                { title: "What sprays/pesticides/herbicides do you use?", ans: "Description is the pattern of narrative development that aims to make vivid a place, object, character, or group. Description is one of four rhetorical modes, along with exposition, argumentation, and narration. In practice it would be difficult to write literature that" },
+                // { question: "What sprays/pesticides/herbicides do you use?", ans: "Description is the pattern of narrative development that aims to make vivid a place, object, character, or group. Description is one of four rhetorical modes, along with exposition, argumentation, and narration. In practice it would be difficult to write literature that" },
+                // { question: "What sprays/pesticides/herbicides do you use?", ans: "Description is the pattern of narrative development that aims to make vivid a place, object, character, or group. Description is one of four rhetorical modes, along with exposition, argumentation, and narration. In practice it would be difficult to write literature that" },
+                // { question: "What sprays/pesticides/herbicides do you use?", ans: "Description is the pattern of narrative development that aims to make vivid a place, object, character, or group. Description is one of four rhetorical modes, along with exposition, argumentation, and narration. In practice it would be difficult to write literature that" },
+                // { question: "What sprays/pesticides/herbicides do you use?", ans: "Description is the pattern of narrative development that aims to make vivid a place, object, character, or group. Description is one of four rhetorical modes, along with exposition, argumentation, and narration. In practice it would be difficult to write literature that" },
+                // { question: "What sprays/pesticides/herbicides do you use?", ans: "Description is the pattern of narrative development that aims to make vivid a place, object, character, or group. Description is one of four rhetorical modes, along with exposition, argumentation, and narration. In practice it would be difficult to write literature that" },
             ],
             AppliedQuestions: [],
             ApproveStatus: "Approved",
@@ -49,11 +51,18 @@ class ViewForum extends Component {
     }
 
     componentDidMount() {
-
-        axios.get(`${APIURL}/Events/getAllEvents`)
+        let config = {
+            headers: {
+              Authorization: `Bearer ${token}`
+                }
+        }
+          const decoded = jwt_decode(token);
+        //   ${decoded.result.id}
+        axios.get(`${APIURL}/message/question/3`,config)
             .then(response => {
-                this.setState({ Questions: response.data.data });
-                console.log("response ", response.data.data);
+                this.setState({ Questions: response.data.question });
+                console.log("response ", response.data.question);
+                console.log("response ", response.data.answers[0].answer);
             })
     }
 
@@ -102,7 +111,7 @@ class ViewForum extends Component {
                                                 <div className="media mb-3">
 
                                                     <div className="media-body align-self-center text-truncate ml-3">
-                                                        <h4 className="m-0 font-weight-semibold text-dark font-16">{item.title}</h4>
+                                                        <h4 className="m-0 font-weight-semibold text-dark font-16">{item.question}</h4>
 
                                                         {/* <button type="button" className="btn btn-warning"
                                                             style={{ marginLeft: "1000px", marginTop: "-30px" }}
@@ -122,7 +131,7 @@ class ViewForum extends Component {
                                                 </div>
                                                 <div style={{ marginTop: "-15px", height: "90px" }}>
                                                     <p className="text-muted mt-4 mb-1">
-                                                        {item.ans}
+                                                        {/* {item.ans} */}
                                                     </p>
                                                 </div>
                                                 <br />
