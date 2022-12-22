@@ -89,8 +89,8 @@ class RegistationStudent extends Component {
             <a href='/utype'>User Type</a>
             <a
             href='/login'
-            className='btn-login  Loginbtn'
-            style={{ marginTop: '1px' }}
+            // className='btn-login  Loginbtn'
+            // style={{ marginTop: '1px' }}
           >
             Login
           </a>
@@ -106,9 +106,9 @@ class RegistationStudent extends Component {
                 autoPlay
               />
             </div>
-            <div className="col-sm-12 col-md-8">
+            <div className="col-sm-12 col-md-8" style={{marginBottom:"-60px",marginTop:"-80px"}}>
               <div className="container1">
-                <h1>Registation</h1>
+                <h1 style={{marginBottom:"-10px",marginTop:"-10px"}}>Registation</h1>
                 <form method="POST" onSubmit={this.onSubmit}>
                   {/* 2 column grid layout with text inputs for the first and last names */}
                   <div className="row">
@@ -254,11 +254,12 @@ class RegistationStudent extends Component {
                     <button
                       type="submit"
                       className=" button1 btn btn-block mb-4"
+                      style={{marginBottom:"-80px",marginTop:"-20px"}}
                     >
                       SIGN UP
                     </button>
                   </div>
-                  <div className="aha">
+                  <div className="aha" style={{marginTop:"-20px"}}>
                     Already have an account <Link to="/login"> Login</Link>
                   </div>
                 </form>

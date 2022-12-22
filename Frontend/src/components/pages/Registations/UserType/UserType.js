@@ -15,8 +15,8 @@ class RegistationHome extends Component {
           </a>
           <a
             href='/login'
-            className='btn-login  Loginbtn'
-            style={{ marginTop: '1px' }}
+            // className='btn-login  Loginbtn'
+            // style={{ marginTop: '1px' }}
           >
             Login
           </a>
@@ -27,7 +27,7 @@ class RegistationHome extends Component {
               <img
                 src={LogoImg}
                 className='Logoimg'
-                style={{ width: '400px', height: '300px', marginLeft: '300px' }}
+                style={{ width: '300px', height: '200px', marginLeft: '300px' ,marginBottom:"-50px",marginTop:"-30px"}}
               />
             </div>
           </div>

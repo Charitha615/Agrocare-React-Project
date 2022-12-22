@@ -15,8 +15,8 @@ class RegistationHome extends Component {
           <a href='/utype'>User Type</a>
           <a
             href='/login'
-            className='btn-login  Loginbtn'
-            style={{ marginTop: '1px' }}
+            // className='btn-login  Loginbtn'
+            // style={{ marginTop: '1px' }}
           >
             Login
           </a>
@@ -27,7 +27,7 @@ class RegistationHome extends Component {
               <img
                 src={LogoImg}
                 className='Logoimg'
-                style={{ width: '400px', height: '300px', marginLeft: '300px' }}
+                style={{ width: '300px', height: '200px', marginLeft: '300px' ,marginBottom:"-60px",marginTop:"-30px"}}
               />
             </div>
           </div>
@@ -35,7 +35,7 @@ class RegistationHome extends Component {
 
         <section style={{ marginLeft: '-50px', marginBottom: '50px' }}>
           <div style={{ backgroundColor: 'white', borderRadius: '10px' }}>
-            <div className='section-container'>
+            <div className='section-container' style={{  marginBottom: '-50px',marginTop:"-50px" }}>
               <div className='sec-card'>
                 <div className='card-box'>
                   <div className='card-content'>

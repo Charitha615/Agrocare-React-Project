@@ -15,8 +15,8 @@ class RegistationHome extends Component {
           <a href='/utype'>User Type</a>
           <a
             href='/login'
-            className='btn-login  Loginbtn'
-            style={{ marginTop: '1px' }}
+            // className='btn-login  Loginbtn'
+            // style={{ marginTop: '1px' }}
           >
             Login
           </a>
@@ -27,7 +27,7 @@ class RegistationHome extends Component {
               <img
                 src={LogoImg}
                 className='Logoimg'
-                style={{ width: '400px', height: '300px',marginLeft:"300px" }}
+                style={{ width: '400px', height: '300px',marginLeft:"300px",marginBottom:"-60px",marginTop:"-30px" }}
               />
             </div>
             
@@ -56,7 +56,7 @@ class RegistationHome extends Component {
             farmers and agricultural Experts for getting supervision for
             Farmers' problems are provided in this platform.
           </p>
-          <h2 style={{ paddingLeft: '24px', marginBottom: '20px' }}>FAQ</h2>
+          <h2 style={{ paddingLeft: '24px', paddingBottom:"50px"}}>FAQ</h2>
           <div class='panel-group' id='accordion'>
             <div class='panel panel-default'>
               <div class='panel-heading'>
