@@ -6,6 +6,7 @@ import { APIURL } from "../../../API/environment";
 import Select from "react-select";
 import Navbar from '../../shopOwnerNavBar';
 import Daybar from '../../DayBar';
+import jwt_decode from "jwt-decode";
 
 const initialState = {
     product_name: "",
@@ -15,7 +16,7 @@ const initialState = {
     quantity: ""
 };
 
-const Token = localStorage.getItem("Token");
+const token = localStorage.getItem("Token");
 
 class EditProfile extends Component {
 
@@ -39,29 +40,34 @@ class EditProfile extends Component {
     onSubmit(event) {
         event.preventDefault();
 
-        let ProductDetails = {
-            product_name: this.state.product_name,
-            unit_price: this.state.unit_price,
-            available_until: this.state.available_until,
-            available_from: this.state.available_from,
-            quantity: this.state.quantity
+
+        let ProfileDetails = {
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            mobile_no: this.state.mobile_no,
+            nearest_city: this.state.nearest_city,
+            district: this.state.district,
+            province: this.state.province,
         };
 
-        console.log("Product Details: ", ProductDetails);
+        console.log("Product Details: ", ProfileDetails);
 
+        const decoded = jwt_decode(token);
+        console.log(decoded.result);
+        
         let config = {
             headers: {
-              'Authorization': 'Bearer ' + Token
+              'Authorization': 'Bearer ' + token
             }
           }
 
         axios
-            .post(`${APIURL}/product/`, ProductDetails,config)
+            .patch(`${APIURL}/user/${decoded.result.id}`, ProfileDetails,config)
             .then((res) => {
                 console.log("res", res);
                 if (res.status === 201) {
                 
-                    toast.success("Product added!");
+                    toast.success("User updated!");
                     window.location.reload();
 
                 } else {
@@ -112,8 +118,8 @@ class EditProfile extends Component {
                                                             <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">First Name</label>
                                                             <div className="col-sm-10">
                                                                 <input className="form-control" type="text" placeholder="" id="example-text-input"
-                                                                    name="product_name"
-                                                                    value={this.state.product_name}
+                                                                    name="first_name"
+                                                                    value={this.state.first_name}
                                                                     onChange={this.onChange}
                                                                     required />
                                                             </div>
@@ -123,35 +129,31 @@ class EditProfile extends Component {
                                                             <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Last Name</label>
                                                             <div className="col-sm-10">
                                                                 <input className="form-control" type="text" placeholder="" id="example-text-input"
-                                                                    name="unit_price"
-                                                                    value={this.state.unit_price}
+                                                                    name="last_name"
+                                                                    value={this.state.last_name}
                                                                     onChange={this.onChange}
                                                                     required />
                                                             </div>
                                                         </div>
-
-
-
-
-                                                        <div className="form-group row">
-                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">NIC</label>
-                                                            <div className="col-sm-4">
-                                                                <input className="form-control" type="text" placeholder="" id="example-text-input"
-                                                                    name="quantity"
-                                                                    value={this.state.quantity}
-                                                                    onChange={this.onChange}
-                                                                    required />
-                                                            </div>
-                                                        </div>
-
 
 
                                                         <div className="form-group row" style={{ marginTop: "40px" }}>
-                                                            <label htmlFor="example-number-input" className="col-sm-2 col-form-label text-right">Provice</label>
+                                                            <label htmlFor="example-number-input" className="col-sm-2 col-form-label text-right">Mobile</label>
                                                             <div className="col-sm-4">
                                                                 <input className="form-control" type="text"  id="example-datetime-local-input"
-                                                                    name="available_from"
-                                                                    value={this.state.available_from}
+                                                                    name="mobile_no"
+                                                                    value={this.state.mobile_no}
+                                                                    onChange={this.onChange}
+                                                                    required />
+                                                            </div>
+
+                                                        </div>
+                                                        <div className="form-group row" style={{ marginTop: "40px" }}>
+                                                            <label htmlFor="example-number-input" className="col-sm-2 col-form-label text-right">Nearest City</label>
+                                                            <div className="col-sm-4">
+                                                                <input className="form-control" type="text"  id="example-datetime-local-input"
+                                                                    name="nearest_city"
+                                                                    value={this.state.nearest_city}
                                                                     onChange={this.onChange}
                                                                     required />
                                                             </div>
@@ -161,8 +163,19 @@ class EditProfile extends Component {
                                                             <label htmlFor="example-number-input" className="col-sm-2 col-form-label text-right">District</label>
                                                             <div className="col-sm-4">
                                                                 <input className="form-control" type="text"  id="example-datetime-local-input"
-                                                                    name="available_until"
-                                                                    value={this.state.available_until}
+                                                                    name="district"
+                                                                    value={this.state.district}
+                                                                    onChange={this.onChange}
+                                                                    required />
+                                                            </div>
+
+                                                        </div>
+                                                        <div className="form-group row" style={{ marginTop: "40px" }}>
+                                                            <label htmlFor="example-number-input" className="col-sm-2 col-form-label text-right">Province</label>
+                                                            <div className="col-sm-4">
+                                                                <input className="form-control" type="text"  id="example-datetime-local-input"
+                                                                    name="province"
+                                                                    value={this.state.province}
                                                                     onChange={this.onChange}
                                                                     required />
                                                             </div>
@@ -174,7 +187,7 @@ class EditProfile extends Component {
                                                 </div>
                                                 <div className="button-items">
                                                     <button className="btn btn-outline-success waves-effect waves-light float-right" onClick={this.onSubmit}>Update</button>
-                                                    <a href="emp-job-list.html" type="button" className="btn btn-outline-warning waves-effect float-left">Cancel</a>
+                                                    <a href="/ExpertProfile" type="button" className="btn btn-outline-warning waves-effect float-left">Cancel</a>
                                                 </div>
                                             </div>
                                         </div>
