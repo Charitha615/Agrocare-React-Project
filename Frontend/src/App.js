@@ -16,6 +16,8 @@ import FarmerProfile from "./components/pages/Farmer/Profile/Profile";
 import FarmerQuestionsAdd from "./components/pages/Farmer/Forum/AddQuestions";
 import FarmerViewForum from "./components/pages/Farmer/Forum/ViewForum";
 import EditProfile from "./components/pages/Farmer/Profile/EditProfile";
+import FertilizerList from "./components/pages/Farmer/Fertilizer/FertilizerList";
+
 
 // Shop Owner 
 import ShopOwnerHomePage from "./components/pages/ShopOwner/Home/shopOwnerHome";
@@ -70,6 +72,7 @@ function App() {
           <Route path="/addQuestions" component={FarmerQuestionsAdd} />
           <Route path="/FarmerViewForum" component={FarmerViewForum} />
           <Route path="/EditProfile" component={EditProfile} />
+          <Route path="/FertilizerList" component={FertilizerList} />
 
 
           {/* Shop Owner */}

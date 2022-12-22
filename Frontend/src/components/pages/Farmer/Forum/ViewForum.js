@@ -58,11 +58,11 @@ class ViewForum extends Component {
         }
           const decoded = jwt_decode(token);
         //   ${decoded.result.id}
-        axios.get(`${APIURL}/message/question/3`,config)
+        axios.get(`${APIURL}/message/allQuestions`,config)
             .then(response => {
-                this.setState({ Questions: response.data.question });
-                console.log("response ", response.data.question);
-                console.log("response ", response.data.answers[0].answer);
+                this.setState({ Questions: response.data });
+                console.log("response ", response.data);
+                // console.log("response ", response.data.answers[0]);
             })
     }
 
@@ -131,7 +131,7 @@ class ViewForum extends Component {
                                                 </div>
                                                 <div style={{ marginTop: "-15px", height: "90px" }}>
                                                     <p className="text-muted mt-4 mb-1">
-                                                        {/* {item.ans} */}
+                                                        {item.answer}
                                                     </p>
                                                 </div>
                                                 <br />

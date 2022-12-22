@@ -5,7 +5,7 @@
 .RHbody{
     background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)!important;
 height: max-content;
-width: 2000px;
+width: 1600px;
 
 }
 .TopRow{
@@ -65,8 +65,8 @@ section{
 .section-container .sec-card:hover .card-box{
 	transform: translateY(-50px);
 	 box-shadow: 0 10px 40px rgb(0 0 0 / 20%);
-	 background: linear-gradient( 130deg
- ,#13BF7A 25%,#1300A8 100%)!important;
+	 /* background: linear-gradient( 130deg
+ ,#13BF7A 25%,#1300A8 100%)!important; */
 	-webkit-transition: opacity 0.5s ease-in-out;
     -moz-transition: opacity 0.5s ease-in-out;
     -ms-transition: opacity 0.5s ease-in-out;
@@ -118,8 +118,8 @@ section{
     font-weight: 400;
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     letter-spacing: 5px;
-    background-image: linear-gradient( 90deg
- ,#F92C8B 0%,#B02CD6 100%);
+    /* background-image: linear-gradient( 90deg
+ ,#F92C8B 0%,#B02CD6 100%); */
     border-width: 0px!important;
     border-color: rgba(0,0,0,0);
     border-radius: 4px;
@@ -135,15 +135,16 @@ section{
 
 /*Login Button*/
 .btn-login{
-	background: linear-gradient( 130deg
- ,#13BF7A 25%,#1300A8 100%);
+	/* background: linear-gradient( 130deg
+ ,#13BF7A 25%,#1300A8 100%); */
+ background: #13BF7A;
 	border-radius: 5px;
 	color: white;
 	align-items: right;
 	justify-content: right;
 }
-.btn-login:hover{  
+/* .btn-login:hover{  
 	background: linear-gradient( 90deg
  ,#F92C8B 0%,#B02CD6 100%);
 	color: white;
-}
+} */

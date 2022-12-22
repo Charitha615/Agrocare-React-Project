@@ -69,7 +69,7 @@ class NavBar extends Component {
                 
 
                             <li>
-                                <a href="/TopCompantApplicant" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-list" style={{ color: "white" }} /><span>Fertilizers </span></a>
+                                <a href="/FertilizerList" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-list" style={{ color: "white" }} /><span>Fertilizers </span></a>
                             </li>
 
                             <li>
