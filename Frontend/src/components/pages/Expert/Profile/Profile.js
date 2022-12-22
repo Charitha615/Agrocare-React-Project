@@ -15,7 +15,8 @@ const initialState = {
   ID: ""
 };
 
-const ApplicantID = localStorage.getItem("LocalUserID")
+const ApplicantID = localStorage.getItem("LocalEmployerID")
+const token = localStorage.getItem("Token")
 class ExpertProfile extends Component {
 
 
@@ -26,25 +27,34 @@ class ExpertProfile extends Component {
       applicant: []
     };
   }
+  
 
 
   componentDidMount() {
 
-    console.log(ApplicantID)
+    let config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+            }
+    }
 
-    axios.get(`${APIURL}/applicantReg/getAllApplicantByID/${ApplicantID}`)
+    // console.log(token)
+
+    axios.get(`${APIURL}/user/currentUser/`,config)
 
       .then(response => {
 
-        this.setState({ applicant: response.data.data });
+        this.setState({ applicant: response.data });
         console.log(" data applicant", this.state.applicant);
 
-        this.setState({ firstName: this.state.applicant.firstName });
-        this.setState({ lastName: this.state.applicant.lastName });
-        this.setState({ mobileNumber: this.state.applicant.mobileNumber });
+        this.setState({ firstName: this.state.applicant.first_name });
+        this.setState({ lastName: this.state.applicant.last_name });
+        this.setState({ mobileNumber: this.state.applicant.mobile_no });
         this.setState({ Field: this.state.applicant.Field });
         this.setState({ email: this.state.applicant.email });
-        this.setState({ ID: this.state.applicant._id });
+        this.setState({ nic: this.state.applicant.nic });
+        this.setState({ province: this.state.applicant.province });
+        this.setState({ ID: this.state.applicant.id });
       })
   }
 
@@ -116,7 +126,7 @@ class ExpertProfile extends Component {
                             <h6 className="mb-0">NIC</h6>
                           </div>
                           <div className="col-sm-9 text-secondary">
-                            {this.state.Field}
+                            {this.state.nic}
                           </div>
                         </div>
                         <hr />
@@ -135,7 +145,7 @@ class ExpertProfile extends Component {
                             <h6 className="mb-0">Province</h6>
                           </div>
                           <div className="col-sm-9 text-secondary">
-                            {this.state.mobileNumber}
+                            {this.state.province}
                           </div>
                         </div>
                         <hr />

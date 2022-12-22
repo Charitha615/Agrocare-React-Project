@@ -78,6 +78,7 @@ module.exports = {
         });
 
         const validate = schema.validate(req.body, {abortEarly: false});
+console.log(validate)
         if (validate.error) {
             res.status(400).send({message: validate.error.details});
             return;
@@ -170,6 +171,7 @@ module.exports = {
         }
     },
     getCurrentUser:async(req,res)=>{
+        console.log(req.user)
         try{
            const currentUser = await getUser(req.user.email);
            res.status(200).send(currentUser);

@@ -129,10 +129,26 @@ class CreateProduct extends Component {
                                                                     required />
                                                             </div>
                                                         </div>
-
-
-
-
+                                                        <div className="form-group row">
+                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Available From</label>
+                                                            <div className="col-sm-10">
+                                                            <input type="date" id="available_from" 
+                                                                    name="available_from"
+                                                                    value={this.state.available_from}
+                                                                    onChange={this.onChange}
+                                                                    required />
+                                                            </div>
+                                                        </div>
+                                                        <div className="form-group row">
+                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Available Util</label>
+                                                            <div className="col-sm-10">
+                                                            <input type="date" id="available_until" 
+                                                                    name="available_until"
+                                                                    value={this.state.available_until}
+                                                                    onChange={this.onChange}
+                                                                    required />
+                                                            </div>
+                                                        </div>
                                                         <div className="form-group row">
                                                             <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Fertilizer quantity</label>
                                                             <div className="col-sm-10">
