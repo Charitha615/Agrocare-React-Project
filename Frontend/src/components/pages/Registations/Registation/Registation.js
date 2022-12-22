@@ -21,10 +21,10 @@ const initialState = {
 };
 
 const InterestedFieldsoptions = [
-  { value: "Farmer", label: "Farmer" },
-  { value: "Customer", label: "Customer" },
-  { value: "Expert", label: "Expert" },
-  { value: "Shop_owner", label: "Shop owner" },
+  { value: "farmer", label: "Farmer" },
+  { value: "customer", label: "Customer" },
+  { value: "expert", label: "Expert" },
+  { value: "shop_owner", label: "Shop owner" },
 ];
 
 class RegistationStudent extends Component {

@@ -32,16 +32,16 @@ class NavBar extends Component {
                     </div>
 
                     <div className="menu-content h-100" data-simplebar style={{ marginTop: "50px" }}>
-                   <div style={{color: "white"}}> Farmer </div>
+                   <div style={{color: "white"}}> Shop Owner </div>
                         <ul className="metismenu left-sidenav-menu">
                             <li>
-                                <a href="/FarmerHomePage" ><i class="fas fa-home" style={{ color: "white" }}></i><span>Home</span></a>
+                                <a href="/ShopOwnerHome" ><i class="fas fa-home" style={{ color: "white" }}></i><span>Home</span></a>
                             </li>
                             <li>
-                                <a href="#"><i data-feather="grid" className="align-self-center fas fa-calendar-week " style={{ color: "white" }} /><span>Product</span><span className="menu-arrow"></span></a>
+                                <a href="#"><i data-feather="grid" className="align-self-center fas fa-calendar-week " style={{ color: "white" }} /><span>Fertilizer</span><span className="menu-arrow"></span></a>
                                 <ul className="nav-second-level" aria-expanded="false">
-                                    <li className="nav-item"><a className="nav-link" href="/AddProduct"><i className="align-self-center fas fa-plus" style={{ color: "white" }} />Add Product</a></li>
-                                    <li className="nav-item"><a className="nav-link" href="/CreatedProductList"><i className="align-self-center fas fa-list" style={{ color: "white" }} />My Products</a></li>
+                                    <li className="nav-item"><a className="nav-link" href="/Addfertilizer"><i className="align-self-center fas fa-plus" style={{ color: "white" }} />Add Fertilizer</a></li>
+                                    <li className="nav-item"><a className="nav-link" href="/CreatedfertilizerList"><i className="align-self-center fas fa-list" style={{ color: "white" }} />My Fertilizer</a></li>
                                 </ul>
                             </li>
                             {/* <li>
@@ -54,23 +54,23 @@ class NavBar extends Component {
 
                            */}
 
-                            <li>
+                            {/* <li>
                                 <a href="/FarmerViewForum"><i data-feather="grid" className="align-self-center fas fa-calendar-week " style={{ color: "white" }} /><span>Forum</span><span className="menu-arrow"></span></a>
                                 <ul className="nav-second-level" aria-expanded="false">
                                     <li className="nav-item"><a className="nav-link" href="/addQuestions"><i className="align-self-center fas fa-plus" style={{ color: "white" }} />Add</a></li>
                                 </ul>
-                            </li>
+                            </li> */}
                     
 
                             <li>
-                                <a href="/FarmerProfile" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-user-alt" style={{ color: "white" }} /><span>My profile</span></a>
+                                <a href="/ShopOwnerProfile" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-user-alt" style={{ color: "white" }} /><span>My profile</span></a>
                             </li>
 
                 
 
-                            <li>
+                            {/* <li>
                                 <a href="/TopCompantApplicant" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-list" style={{ color: "white" }} /><span>Fertilizers </span></a>
-                            </li>
+                            </li> */}
 
                             <li>
                                 <a href="/login" style={{ marginTop: "320px" }}><i data-feather="layers" class="align-self-center fas fa-sign-out-alt" style={{ color: "white" }}></i><span>Log out</span></a>

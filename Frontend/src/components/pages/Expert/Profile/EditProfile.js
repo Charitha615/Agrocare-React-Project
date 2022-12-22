@@ -4,8 +4,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../API/environment";
 import Select from "react-select";
-import Navbar from '../../farmerNavibar';
+import Navbar from '../../expertNavibar';
 import Daybar from '../../DayBar';
+import jwt_decode from "jwt-decode";
 
 const initialState = {
     product_name: "",
@@ -15,9 +16,9 @@ const initialState = {
     quantity: ""
 };
 
-const Token = localStorage.getItem("Token");
+const token = localStorage.getItem("Token");
 
-class EditProduct extends Component {
+class EditProfile extends Component {
 
     constructor(props) {
         super(props);
@@ -39,29 +40,34 @@ class EditProduct extends Component {
     onSubmit(event) {
         event.preventDefault();
 
-        let ProductDetails = {
-            product_name: this.state.product_name,
-            unit_price: this.state.unit_price,
-            available_until: this.state.available_until,
-            available_from: this.state.available_from,
-            quantity: this.state.quantity
+
+        let ProfileDetails = {
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            mobile_no: this.state.mobile_no,
+            nearest_city: this.state.nearest_city,
+            district: this.state.district,
+            province: this.state.province,
         };
 
-        console.log("Product Details: ", ProductDetails);
+        console.log("Product Details: ", ProfileDetails);
 
+        const decoded = jwt_decode(token);
+        console.log(decoded.result);
+        
         let config = {
             headers: {
-              'Authorization': 'Bearer ' + Token
+              'Authorization': 'Bearer ' + token
             }
           }
 
         axios
-            .post(`${APIURL}/product/`, ProductDetails,config)
+            .patch(`${APIURL}/user/${decoded.result.id}`, ProfileDetails,config)
             .then((res) => {
                 console.log("res", res);
                 if (res.status === 201) {
                 
-                    toast.success("Product added!");
+                    toast.success("User updated!");
                     window.location.reload();
 
                 } else {
@@ -90,7 +96,7 @@ class EditProduct extends Component {
                                         <div className="page-title-box">
                                             <div className="row">
                                                 <div className="col">
-                                                    <h4 className="page-title">Edit Product</h4>
+                                                    <h4 className="page-title">Edit Profile</h4>
                                                     
                                                 </div>
                                             </div>
@@ -102,67 +108,74 @@ class EditProduct extends Component {
                                     <div className="col-lg-12">
                                         <div className="card">
                                             <div className="card-header">
-                                                <h4 className="card-title">Update your Product</h4>
+                                                <h4 className="card-title">Update your Profile</h4>
 
                                             </div>
                                             <div className="card-body">
                                                 <div className="row">
                                                     <div className="col-lg-12">
                                                         <div className="form-group row">
-                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Product Name</label>
+                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">First Name</label>
                                                             <div className="col-sm-10">
-                                                                <input className="form-control" type="text" placeholder="Product Name is..." id="example-text-input"
-                                                                    name="product_name"
-                                                                    value={this.state.product_name}
+                                                                <input className="form-control" type="text" placeholder="" id="example-text-input"
+                                                                    name="first_name"
+                                                                    value={this.state.first_name}
                                                                     onChange={this.onChange}
                                                                     required />
                                                             </div>
                                                         </div>
 
                                                         <div className="form-group row">
-                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Product Price</label>
+                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Last Name</label>
                                                             <div className="col-sm-10">
-                                                                <input className="form-control" type="text" placeholder="A Product Price is..." id="example-text-input"
-                                                                    name="unit_price"
-                                                                    value={this.state.unit_price}
+                                                                <input className="form-control" type="text" placeholder="" id="example-text-input"
+                                                                    name="last_name"
+                                                                    value={this.state.last_name}
                                                                     onChange={this.onChange}
                                                                     required />
                                                             </div>
                                                         </div>
-
-
-
-
-                                                        <div className="form-group row">
-                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Products quantity</label>
-                                                            <div className="col-sm-10">
-                                                                <input className="form-control" type="text" placeholder="Products quantities are..." id="example-text-input"
-                                                                    name="quantity"
-                                                                    value={this.state.quantity}
-                                                                    onChange={this.onChange}
-                                                                    required />
-                                                            </div>
-                                                        </div>
-
 
 
                                                         <div className="form-group row" style={{ marginTop: "40px" }}>
-                                                            <label htmlFor="example-number-input" className="col-sm-2 col-form-label text-right">Starting date</label>
+                                                            <label htmlFor="example-number-input" className="col-sm-2 col-form-label text-right">Mobile</label>
                                                             <div className="col-sm-4">
-                                                                <input className="form-control" type="date" defaultValue="2011-08-19T13:45:00" id="example-datetime-local-input"
-                                                                    name="available_from"
-                                                                    value={this.state.available_from}
+                                                                <input className="form-control" type="text"  id="example-datetime-local-input"
+                                                                    name="mobile_no"
+                                                                    value={this.state.mobile_no}
                                                                     onChange={this.onChange}
                                                                     required />
                                                             </div>
 
                                                         </div>
                                                         <div className="form-group row" style={{ marginTop: "40px" }}>
-                                                            <label htmlFor="example-number-input" className="col-sm-2 col-form-label text-right">Ending date</label>
+                                                            <label htmlFor="example-number-input" className="col-sm-2 col-form-label text-right">Nearest City</label>
                                                             <div className="col-sm-4">
-                                                                <input className="form-control" type="date" defaultValue="2011-08-19T13:45:00" id="example-datetime-local-input"
-                                                                    name="available_until"
-                                                                    value={this.state.available_until}
+                                                                <input className="form-control" type="text"  id="example-datetime-local-input"
+                                                                    name="nearest_city"
+                                                                    value={this.state.nearest_city}
+                                                                    onChange={this.onChange}
+                                                                    required />
+                                                            </div>
+
+                                                        </div>
+                                                        <div className="form-group row" style={{ marginTop: "40px" }}>
+                                                            <label htmlFor="example-number-input" className="col-sm-2 col-form-label text-right">District</label>
+                                                            <div className="col-sm-4">
+                                                                <input className="form-control" type="text"  id="example-datetime-local-input"
+                                                                    name="district"
+                                                                    value={this.state.district}
+                                                                    onChange={this.onChange}
+                                                                    required />
+                                                            </div>
+
+                                                        </div>
+                                                        <div className="form-group row" style={{ marginTop: "40px" }}>
+                                                            <label htmlFor="example-number-input" className="col-sm-2 col-form-label text-right">Province</label>
+                                                            <div className="col-sm-4">
+                                                                <input className="form-control" type="text"  id="example-datetime-local-input"
+                                                                    name="province"
+                                                                    value={this.state.province}
                                                                     onChange={this.onChange}
                                                                     required />
                                                             </div>
@@ -173,8 +186,8 @@ class EditProduct extends Component {
                                                     </div>
                                                 </div>
                                                 <div className="button-items">
-                                                    <button className="btn btn-outline-success waves-effect waves-light float-right" onClick={this.onSubmit}>Create</button>
-                                                    <a href="emp-job-list.html" type="button" className="btn btn-outline-warning waves-effect float-left">Cancel</a>
+                                                    <button className="btn btn-outline-success waves-effect waves-light float-right" onClick={this.onSubmit}>Update</button>
+                                                    <a href="/ExpertProfile" type="button" className="btn btn-outline-warning waves-effect float-left">Cancel</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -190,4 +203,4 @@ class EditProduct extends Component {
         );
     }
 }
-export default EditProduct;
+export default EditProfile;
