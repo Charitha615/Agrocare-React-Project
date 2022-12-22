@@ -79,7 +79,7 @@ class Login extends Component {
           toast.success("You login as a Farmer");
           // localStorage.setItem("LocalEmployerID");
           // this.props.history.push("/applicantHome");
-          window.location.href = "/ExpertHomePage";
+          window.location.href = "/ExpertViewForum";
       
   
         }
