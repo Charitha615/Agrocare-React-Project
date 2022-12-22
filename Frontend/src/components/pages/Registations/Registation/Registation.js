@@ -108,7 +108,7 @@ class RegistationStudent extends Component {
             </div>
             <div className="col-sm-12 col-md-8" style={{marginBottom:"-60px",marginTop:"-80px"}}>
               <div className="container1">
-                <h1 style={{marginBottom:"-10px",marginTop:"-10px"}}>Registation</h1>
+                <h1 style={{marginBottom:"-10px",marginTop:"-10px"}}>Registration</h1>
                 <form method="POST" onSubmit={this.onSubmit}>
                   {/* 2 column grid layout with text inputs for the first and last names */}
                   <div className="row">
