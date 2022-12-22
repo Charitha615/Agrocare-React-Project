@@ -33,8 +33,8 @@ class RegistationHome extends Component {
           </div>
         </div>
 
-        <section style={{ marginLeft: '-50px' }}>
-          <div style={{ backgroundColor: 'white' }}>
+        <section style={{ marginLeft: '-50px', marginBottom: '50px' }}>
+          <div style={{ backgroundColor: 'white', borderRadius: '10px' }}>
             <div className='section-container'>
               <div className='sec-card'>
                 <div className='card-box'>
@@ -61,13 +61,10 @@ class RegistationHome extends Component {
                   <div className='card-content'>
                     <h3>About users</h3>
                     <p>
-                      These example sentences are selected automatically from
-                      various online news sources to reflect current usage of
-                      the word 'description.' Views expressed in the examples do
-                      not represent the opinion of Merriam-Webster or its
-                      editors. Send us feedback.
+                      There are four user types. They are farmers Customers,
+                      fertilizer shop owners and agricultural experts
                     </p>
-                    {/* <a href="/employeRegister">Register as Employer</a> */}
+                    <a href='/utype'>Read more</a>
                   </div>
                 </div>
               </div>
