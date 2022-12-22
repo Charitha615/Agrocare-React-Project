@@ -1,4 +1,7 @@
+body{
+    background-image: url("https://wallpaperaccess.com/full/3495217.jpg");
 
+}
 
 .logmain{
     /* background:linear-gradient(130deg
@@ -19,7 +22,7 @@
         /* background: linear-gradient(rgba(0,0,0,0,3),rgba(0,0,0,0,3)); */
         /* transform: translate(-50%,-50%); */
         /* background: #fff;     */
-        background: #C9CCD3;
+        /* background: #C9CCD3; */
         background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%)!important;
         width: 300;
         padding: 50px 30px;

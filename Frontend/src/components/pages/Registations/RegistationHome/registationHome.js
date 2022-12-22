@@ -7,6 +7,8 @@ class RegistationHome extends Component {
   render() {
     return (
       <div className="RHbody">
+
+      
         <div className="container">
           <div className="row">
             <div className="TopRow">
@@ -21,7 +23,8 @@ class RegistationHome extends Component {
           </div>
         </div>
         
-        <section>
+        <section style={{marginLeft:"-50px"}}>
+      <div style={{backgroundColor: "white"}}>
           <div className="section-container">
             <div className="sec-card">
               <div className="card-box">
@@ -47,6 +50,7 @@ class RegistationHome extends Component {
             </div>
             
           </div>
+        </div>
         </section>
       </div>
     );
