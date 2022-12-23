@@ -117,7 +117,7 @@ class ViewForum extends Component {
                             {this.state.Questions.length > 0 && this.state.Questions.map((item, index) => (
                                 <div className="row">
                                     <div className="col-lg-4" key={index} >
-                                        <div className="card" style={{ height: "250px", width: "1200px" }}>
+                                        <div className="card" style={{ height: "350px", width: "1200px" }}>
                                             <div className="card-body">
                                                 <div className="media mb-3">
 
