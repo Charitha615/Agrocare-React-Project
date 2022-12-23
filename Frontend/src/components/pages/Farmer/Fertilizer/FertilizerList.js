@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import axios from "axios";
-import { APIURL } from "../../../../API/environment";
+import { APIURL } from "../../../API/environment";
 import { toast } from "react-toastify";
-import Navbar from '../../../shopOwnerNavBar';
-import Daybar from '../../../DayBar';
+import Navbar from '../../farmerNavibar';
+import Daybar from '../../DayBar';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 const UserID = localStorage.getItem("LocalUserID");
 // const UserID = "60f9393bf9010e001577b6ea";
@@ -18,7 +21,7 @@ class CreateProductList extends Component {
 
     this.state = {
       Products : [
-        // { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+        // { title: "asda", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
         // { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
         // { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
         // { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
@@ -30,10 +33,10 @@ class CreateProductList extends Component {
 
 
 
-  RollBack(e, fertilizerId) {
-    // console.log(fertilizerId)
+  RollBack(e, jobID) {
+    console.log(jobID)
 
-    axios.delete(`${APIURL}/Applicant/deleteappliedJob/${fertilizerId}`)
+    axios.delete(`${APIURL}/Applicant/deleteappliedJob/${jobID}`)
 
       .then((res) => {
         console.log("res", res);
@@ -57,22 +60,7 @@ class CreateProductList extends Component {
     window.localStorage.removeItem("JobID");
     localStorage.setItem("JobID", jobsId)
 
-    window.location.href = "/Updatefertilizer";
-  }
-
-  componentDidMount() {
-    let config = {
-      headers: {
-        Authorization: `Bearer ${token}`
-          }
-  }
-    axios.get(`${APIURL}/product/allProducts?type=owner`,config)
-
-      .then(response => {
-
-        console.log(" data getAppliedJob", response.data);
-        this.setState({ Products: response.data});
-      })
+    window.location.href = "/UpdateProduct";
   }
 
   assignId(e,id){
@@ -80,8 +68,24 @@ class CreateProductList extends Component {
     console.log(id)
     window.localStorage.removeItem("productId")
     localStorage.setItem("productId",id)
-    window.location="/Updatefertilizer"
+    window.location="/UpdateProduct"
 }
+
+
+  componentDidMount() {
+    let config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+          }
+  }
+    axios.get(`${APIURL}/product/allProducts?type=farmer`,config)
+
+      .then(response => {
+
+        console.log(" data getAppliedJob", response.data);
+        this.setState({ Products: response.data});
+      })
+  }
 
   render() {
     return (
@@ -110,8 +114,8 @@ class CreateProductList extends Component {
               </div>
               <div className="row">
                 <li className="list-inline-item">
-                  <a href="/Addfertilizer"><button type="button" className="btn btn-success btn-sm" style={{ marginLeft: "1050px" }}
-                  >Add Fertilizer</button></a>
+                  <a href="/AddProduct"><button type="button" className="btn btn-success btn-sm" style={{ marginLeft: "1050px" }}
+                  >Add Product</button></a>
                 </li>
                 <div className="col-12">
                   <div className="card">
@@ -121,7 +125,7 @@ class CreateProductList extends Component {
                       <div className="table-responsive">
                         <div id="viewtable">
                           <h3 style={{ 'textAlign': 'center' }}>
-                            Added Fertilizer List
+                            Fertilizer Product List
                           </h3>
                           <table className="table  table-bordered" >
                             <thead>
@@ -138,6 +142,8 @@ class CreateProductList extends Component {
                             <tbody>
                               {this.state.Products.length > 0 && this.state.Products.map((item, index) => (
 
+
+
                                 <tr>
                                   <td>{item.product_name}</td>
                                   <td>{item.unit_price}</td>
@@ -153,7 +159,7 @@ class CreateProductList extends Component {
                                           <button type="button" className="btn btn-warning waves-effect waves-light"
                                             onClick={e=>this.assignId(e,item.product_id)}>Edit</button>
                                           <button type="button" className="btn btn-danger waves-effect waves-light"
-                                            onClick={e => this.RollBack(e, item.product_id)}>Delete</button>
+                                            onClick={e => this.RollBack(e, item._id)}>Delete</button>
                            
 
                                         </>

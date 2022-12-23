@@ -6,6 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import homeRegistation from "./components/pages/Registations/RegistationHome/registationHome";
 import Register from "./components/pages/Registations/Registation/Registation";
 import login from "./components/pages/Login/login";
+import faq from "./components/pages/Registations/Faq/Faq";
+import utype from "./components/pages/Registations/UserType/UserType";
 
 // Farmer 
 import FarmerHomePage from "./components/pages/Farmer/Home/farmerHome";
@@ -16,6 +18,8 @@ import FarmerProfile from "./components/pages/Farmer/Profile/Profile";
 import FarmerQuestionsAdd from "./components/pages/Farmer/Forum/AddQuestions";
 import FarmerViewForum from "./components/pages/Farmer/Forum/ViewForum";
 import EditProfile from "./components/pages/Farmer/Profile/EditProfile";
+import FertilizerList from "./components/pages/Farmer/Fertilizer/FertilizerList";
+
 
 // Shop Owner 
 import ShopOwnerHomePage from "./components/pages/ShopOwner/Home/shopOwnerHome";
@@ -34,6 +38,8 @@ import ExpertAddAnswer from "./components/pages/Expert/Forum/AddQuestions";
 
 //Customer
 import CustomerHomePage from "./components/pages/Customer/Home/customerHome"
+import CustomerProfile from "./components/pages/Customer/Profile/Profile"
+import CustomerProfileEdit from "./components/pages/Customer/Profile/EditProfile"
 
 
 
@@ -57,6 +63,8 @@ function App() {
           <Route path="/" exact component={homeRegistation} />
           <Route path="/Register" component={Register} />
           <Route path="/login" component={login} />
+          <Route path="/faq" component={faq} />
+          <Route path="/utype" component={utype} />
 
           {/* Farmer */}
 
@@ -68,6 +76,7 @@ function App() {
           <Route path="/addQuestions" component={FarmerQuestionsAdd} />
           <Route path="/FarmerViewForum" component={FarmerViewForum} />
           <Route path="/EditProfile" component={EditProfile} />
+          <Route path="/FertilizerList" component={FertilizerList} />
 
 
           {/* Shop Owner */}
@@ -89,7 +98,9 @@ function App() {
 
           {/* Customer */}
 
-          <Route path="/CustomerHomePage" component={CustomerHomePage} />
+          <Route path="/CustomerHomePage" component={CustomerHomePage} />          
+          <Route path="/CustomerProfile" component={CustomerProfile} />
+          <Route path="/CustomerProfileEdit" component={CustomerProfileEdit} />
 
 
 

@@ -8,7 +8,7 @@ import Daybar from '../../DayBar';
 
 
 const UserID = localStorage.getItem("LocalUserID");
-
+const token = localStorage.getItem("Token")
 class CustomerHome extends Component {
 
     constructor(props) {
@@ -23,11 +23,11 @@ class CustomerHome extends Component {
 
         this.state = {
             Products : [
-                { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
-                { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
-                { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
-                { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
-                { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" }
+                // { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+                // { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+                // { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+                // { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+                // { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" }
               ],
             ApprovedTopList: [],
             AppliedJobs: [],
@@ -82,22 +82,21 @@ class CustomerHome extends Component {
 
 
     componentDidMount() {
-
-
-        axios.get(`${APIURL}/vacancy/getAllJobs`)
+        let config = {
+            headers: {
+              Authorization: `Bearer ${token}`
+                }
+        }
+    
+        axios.get(`${APIURL}/product/allProducts?type=farmer`,config)
 
             .then(response => {
-                this.setState({ Products: response.data.data });
-                console.log("All Products response ", response.data.data);
+                this.setState({ Products: response.data});
+                console.log("All Products response ", response.data);
             })
 
 
-        axios.get(`${APIURL}/TopList/getApproedAllTopList`)
-
-            .then(Approveresponse => {
-                this.setState({ ApprovedTopList: Approveresponse.data.data });
-                console.log("ApprovedTopList ", Approveresponse.data.data);
-            })
+        
     }
 
     onChange(e) {
@@ -175,7 +174,7 @@ class CustomerHome extends Component {
                                                     <div className="media-body align-self-center text-truncate ml-3">
                                                         <h4 className="m-0 font-weight-semibold text-dark font-16">{item.title}</h4>
                                                         <p className="text-muted  mb-0 font-13"><span className="text-dark">Price:
-                                                        </span>{item.price}</p>
+                                                        </span>{item.unit_price}</p>
                                                     </div>
 
                                                 </div>
@@ -200,11 +199,11 @@ class CustomerHome extends Component {
 
                                                 </div>
                                                 <div className="d-flex justify-content-between" style={{ marginTop: "" }}>
-                                                    <h6 className="font-weight-semibold">Starting Date : <span className="text-muted font-weight-normal"> {item.starting_date}</span></h6>
+                                                    <h6 className="font-weight-semibold">Starting Date : <span className="text-muted font-weight-normal"> {item.available_from.slice(0, -14)}</span></h6>
 
                                                 </div>
                                                 <div className="d-flex justify-content-between" style={{ marginTop: "" }}>
-                                                    <h6 className="font-weight-semibold">Ending Date : <span className="text-muted font-weight-normal"> {item.ending_date}</span></h6>
+                                                    <h6 className="font-weight-semibold">Ending Date : <span className="text-muted font-weight-normal"> {item.available_until.slice(0, -14)}</span></h6>
 
                                                 </div>
 

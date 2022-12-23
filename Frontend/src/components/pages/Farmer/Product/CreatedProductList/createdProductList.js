@@ -10,7 +10,7 @@ import html2canvas from 'html2canvas';
 
 const UserID = localStorage.getItem("LocalUserID");
 // const UserID = "60f9393bf9010e001577b6ea";
-const Token = localStorage.getItem("Token");
+const token = localStorage.getItem("Token");
 
 class CreateProductList extends Component {
 
@@ -21,11 +21,11 @@ class CreateProductList extends Component {
 
     this.state = {
       Products : [
-        { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
-        { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
-        { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
-        { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
-        { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" }
+        // { title: "asda", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+        // { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+        // { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+        // { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" },
+        // { title: "Rice", price: "1000",quantity:"10",starting_date:"2020-10-10",ending_date:"2030-10-10" }
       ]
 
     }
@@ -63,16 +63,27 @@ class CreateProductList extends Component {
     window.location.href = "/UpdateProduct";
   }
 
+  assignId(e,id){
+    e.preventDefault();
+    console.log(id)
+    window.localStorage.removeItem("productId")
+    localStorage.setItem("productId",id)
+    window.location="/UpdateProduct"
+}
 
 
   componentDidMount() {
-
-    axios.get(`${APIURL}/Applicant/getAppliedJob/${UserID}`)
+    let config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+          }
+  }
+    axios.get(`${APIURL}/product/allProducts?type=farmer`,config)
 
       .then(response => {
 
-        console.log(" data getAppliedJob", response.data.data);
-        this.setState({ Products: response.data.data });
+        console.log(" data getAppliedJob", response.data);
+        this.setState({ Products: response.data});
       })
   }
 
@@ -134,11 +145,11 @@ class CreateProductList extends Component {
 
 
                                 <tr>
-                                  <td>{item.title}</td>
-                                  <td>{item.price}</td>
+                                  <td>{item.product_name}</td>
+                                  <td>{item.unit_price}</td>
                                   <td>{item.quantity}</td>
-                                  <td>{item.starting_date}</td>
-                                  <td>{item.ending_date}</td>
+                                  <td>{item.available_from}</td>
+                                  <td>{item.available_until}</td>
                                   <td className="text-center">
                                     <div className="button-items">
 
@@ -146,7 +157,7 @@ class CreateProductList extends Component {
                                         <>
 
                                           <button type="button" className="btn btn-warning waves-effect waves-light"
-                                            onClick={e => this.navigateWithID(e, item._id)}>Edit</button>
+                                            onClick={e=>this.assignId(e,item.product_id)}>Edit</button>
                                           <button type="button" className="btn btn-danger waves-effect waves-light"
                                             onClick={e => this.RollBack(e, item._id)}>Delete</button>
                            

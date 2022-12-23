@@ -122,7 +122,6 @@ class ShopOwnweHome extends Component {
             })
 
     }
-
     render() {
         return (
             <div>
@@ -177,9 +176,9 @@ class ShopOwnweHome extends Component {
                                                 <div className="media mb-3">
                                                     <img src="assets/images/widgets/project2.jpg" alt="" className="thumb-md rounded-circle" />
                                                     <div className="media-body align-self-center text-truncate ml-3">
-                                                        <h4 className="m-0 font-weight-semibold text-dark font-16">{item.product_name}</h4>
+                                                        <h4 className="m-0 font-weight-semibold text-dark font-16">{item.title}</h4>
                                                         <p className="text-muted  mb-0 font-13"><span className="text-dark">Price:
-                                                        </span>{item.unit_price}</p>
+                                                        </span>{item.price}</p>
                                                     </div>
 
                                                 </div>
@@ -204,11 +203,11 @@ class ShopOwnweHome extends Component {
 
                                                 </div>
                                                 <div className="d-flex justify-content-between" style={{ marginTop: "" }}>
-                                                    <h6 className="font-weight-semibold">Starting Date : <span className="text-muted font-weight-normal"> {item.available_from}</span></h6>
+                                                    <h6 className="font-weight-semibold">Starting Date : <span className="text-muted font-weight-normal"> {item.starting_date}</span></h6>
 
                                                 </div>
                                                 <div className="d-flex justify-content-between" style={{ marginTop: "" }}>
-                                                    <h6 className="font-weight-semibold">Ending Date : <span className="text-muted font-weight-normal"> {item.available_until}</span></h6>
+                                                    <h6 className="font-weight-semibold">Ending Date : <span className="text-muted font-weight-normal"> {item.ending_date}</span></h6>
 
                                                 </div>
 

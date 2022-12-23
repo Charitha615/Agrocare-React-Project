@@ -34,9 +34,9 @@ class NavBar extends Component {
                     <div className="menu-content h-100" data-simplebar style={{ marginTop: "50px" }}>
                    <div style={{color: "white"}}> Expert </div>
                         <ul className="metismenu left-sidenav-menu">
-                            <li>
+                            {/* <li>
                                 <a href="/ExpertHomePage" ><i class="fas fa-home" style={{ color: "white" }}></i><span>Home</span></a>
-                            </li>
+                            </li> */}
                           
                          
                             <li>
@@ -49,7 +49,7 @@ class NavBar extends Component {
                             </li>
 
                             <li>
-                                <a href="/login" style={{ marginTop: "320px" }}><i data-feather="layers" class="align-self-center fas fa-sign-out-alt" style={{ color: "white" }}></i><span>Log out</span></a>
+                                <a href="/login" style={{ marginTop: "100px" }}><i data-feather="layers" class="align-self-center fas fa-sign-out-alt" style={{ color: "white" }}></i><span>Log out</span></a>
                             </li>
                         </ul>
                     </div>

@@ -1,12 +1,13 @@
 .SRbody{
+  background-image: url("https://wallpaperaccess.com/full/3495217.jpg");
 	/*background-image: linear-gradient(#1d2c48,#2C7FF1, #EFAC11);*/
 	min-height: 100vh;
   /* background-image: linear-gradient(
     130deg
     ,#13bf7a 25%,#1300a8 100%)!important; */
-    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)!important;
+    /* background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)!important; */
     font-family: 'Roboto',Helvetica,Arial,Lucida,sans-serif!important;
-    width: 2000px;
+    width: 1600px;
     
 }
 /* .container{

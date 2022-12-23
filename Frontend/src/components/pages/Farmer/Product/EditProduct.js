@@ -17,6 +17,8 @@ const initialState = {
 
 const Token = localStorage.getItem("Token");
 
+const productId = localStorage.getItem("productId");
+
 class EditProduct extends Component {
 
     constructor(props) {
@@ -56,7 +58,7 @@ class EditProduct extends Component {
           }
 
         axios
-            .post(`${APIURL}/product/`, ProductDetails,config)
+            .patch(`${APIURL}/product/${productId}`, ProductDetails,config)
             .then((res) => {
                 console.log("res", res);
                 if (res.status === 201) {

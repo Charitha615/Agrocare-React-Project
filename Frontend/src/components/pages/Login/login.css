@@ -1,5 +1,30 @@
+body{
+    background-image: url("https://wallpaperaccess.com/full/3495217.jpg");
 
-
+}
+.topnav {
+	overflow: hidden;
+	background-color: #333;
+  }
+  
+  .topnav a {
+	float: left;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+  }
+  
+  .topnav a:hover {
+	background-color: #ddd;
+	color: black;
+  }
+  
+  .topnav a.active {
+	background-color: #04AA6D;
+	color: white;
+  }
 .logmain{
     /* background:linear-gradient(130deg
     ,#13BF7A 25%,#1300A8 100%)!important;; */
@@ -19,7 +44,7 @@
         /* background: linear-gradient(rgba(0,0,0,0,3),rgba(0,0,0,0,3)); */
         /* transform: translate(-50%,-50%); */
         /* background: #fff;     */
-        background: #C9CCD3;
+        /* background: #C9CCD3; */
         background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%)!important;
         width: 300;
         padding: 50px 30px;
@@ -42,8 +67,9 @@
         border-radius: 10px;
     }
     .con input[type="submit"]{
-        background-image: linear-gradient( 90deg
-        ,#F92C8B 0%,#B02CD6 100%);
+        /* background-image: linear-gradient( 90deg
+        ,#F92C8B 0%,#B02CD6 100%); */
+        background: #13BF7A;
         color:white;
         text-transform: uppercase;
         font-size: 5mm;
