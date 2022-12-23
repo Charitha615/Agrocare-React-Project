@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import './login.css';
-import LogoImg from '../../Images/Logo2.png';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import { APIURL } from '../../API/environment';
-import jwt_decode from 'jwt-decode';
+import React, { Component } from "react";
+import "./login.css";
+import LogoImg from "../../Images/Logo2.png";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { APIURL } from "../../API/environment";
+import jwt_decode from "jwt-decode";
 
 const initialState = {
-  email: '',
-  password: '',
+  email: "",
+  password: "",
   stu: 1,
   emp: 1,
 };
@@ -33,15 +33,15 @@ class Login extends Component {
       password: this.state.password,
     };
 
-    console.log('email', login);
+    console.log("email", login);
 
     axios.post(`${APIURL}/user/login`, login).then((res) => {
-      console.log('res', res);
+      console.log("res", res);
 
       if (res.status === 201) {
-        console.log('data are 201', res.data.data.token);
+        console.log("data are 201", res.data.data.token);
 
-        localStorage.setItem('Token', res.data.data.token);
+        localStorage.setItem("Token", res.data.data.token);
 
         const token = res.data.data.token;
         const decoded = jwt_decode(token);
@@ -49,143 +49,116 @@ class Login extends Component {
 
         const userRoleStatus = decoded.result.user_type;
 
-        if (userRoleStatus === 'Farmer') {
-          console.log('userRoleStatus', userRoleStatus);
-          // localStorage.setItem("LocalEmployerID");
-          toast.success('You login as a Farmer');
-          // localStorage.setItem("LocalEmployerID");
-          // this.props.history.push("/applicantHome");
-          window.location.href = '/FarmerHomePage';
+        if (userRoleStatus === "Farmer") {
+          console.log("userRoleStatus", userRoleStatus);
+          toast.success("You login as a Farmer");
+          window.location.href = "/FarmerHomePage";
         }
-        if (userRoleStatus === 'Shop owner') {
-          console.log('userRoleStatus', userRoleStatus);
-          // localStorage.setItem("LocalEmployerID");
-          toast.success('You login as a Farmer');
-          // localStorage.setItem("LocalEmployerID");
-          // this.props.history.push("/applicantHome");
-          window.location.href = '/ShopOwnerHome';
+        if (userRoleStatus === "Shop owner") {
+          console.log("userRoleStatus", userRoleStatus);
+          toast.success("You login as a Farmer");
+          window.location.href = "/ShopOwnerHome";
         }
 
-        if (userRoleStatus === 'Expert') {
-          console.log('userRoleStatus', userRoleStatus);
-          localStorage.setItem('LocalEmployerID', decoded.result.id);
-          toast.success('You login as a Farmer');
-          // localStorage.setItem("LocalEmployerID");
-          // this.props.history.push("/applicantHome");
-          window.location.href = '/ExpertViewForum';
+        if (userRoleStatus === "Expert") {
+          console.log("userRoleStatus", userRoleStatus);
+          localStorage.setItem("LocalEmployerID", decoded.result.id);
+          toast.success("You login as a Farmer");
+          window.location.href = "/ExpertViewForum";
         }
 
-        if (userRoleStatus === 'Customer') {
-          console.log('userRoleStatus', userRoleStatus);
-          // localStorage.setItem("LocalEmployerID");
-          toast.success('You login as a Farmer');
-          // localStorage.setItem("LocalEmployerID");
-          // this.props.history.push("/applicantHome");
-          window.location.href = '/CustomerHomePage';
+        if (userRoleStatus === "Customer") {
+          console.log("userRoleStatus", userRoleStatus);
+          toast.success("You login as a Farmer");
+          window.location.href = "/CustomerHomePage";
         }
       }
-      // else if (res.data.message == "This email doest not exist. Please create a your account first.") {
-      //   this.state.emp = 2;
-      //   // toast.error(res.data.message);
-      //   // toast.error("Password does not mach this"+ login.email);
-      //   // alert(res.data.message)
-      // }
-      // else {
-      //   toast.error(res.data.message);
-      // }
     });
   }
 
   render() {
     return (
       <>
-        <div className='logmain'>
-          {/* <section className="sec"> */}
-          <div class='topnav'>
-            <a class='active' href='/'>
+        <div className="logmain">
+          <div class="topnav">
+            <a class="active" href="/">
               Home
             </a>
-            <a href='/faq'>FAQ</a>
-            <a href='/utype'>User Type</a>
+            <a href="/faq">FAQ</a>
+            <a href="/utype">User Type</a>
           </div>
-          <div className='logForm'>
-            <form method='POST' onSubmit={this.onSubmit}>
-              <div className='imglogForm'>
+          <div className="logForm">
+            <form method="POST" onSubmit={this.onSubmit}>
+              <div className="imglogForm">
                 <img
                   src={LogoImg}
-                  alt='Avatar'
-                  className='avatar'
+                  alt="Avatar"
+                  className="avatar"
                   width={130}
                   height={100}
                 />
               </div>
-              <div className='con'>
-                <label className='lable-data' htmlFor='name'>
+              <div className="con">
+                <label className="lable-data" htmlFor="name">
                   Gmail
                 </label>
                 <input
-                  className='add-data'
-                  type='text'
-                  id='name'
-                  name='email'
+                  className="add-data"
+                  type="text"
+                  id="name"
+                  name="email"
                   value={this.state.email}
                   onChange={this.onChange}
                 />
               </div>
-              <div className='con'>
-                <label className='lable-data' htmlFor='password'>
+              <div className="con">
+                <label className="lable-data" htmlFor="password">
                   Password
                 </label>
                 <input
-                  className='add-data'
-                  type='password'
-                  name='password'
+                  className="add-data"
+                  type="password"
+                  name="password"
                   value={this.state.password}
                   onChange={this.onChange}
-                  id='password'
+                  id="password"
                 />
               </div>
               <div>
-                <div className='con-checkbox' style={{ marginTop: '20px' }}>
-                  <input type='checkbox' style={{ marginLeft: '-100px' }} />
+                <div className="con-checkbox" style={{ marginTop: "20px" }}>
+                  <input type="checkbox" style={{ marginLeft: "-100px" }} />
                   <span
                     style={{
-                      marginTop: '0px',
-                      color: 'black',
-                      marginLeft: '-100px',
+                      marginTop: "0px",
+                      color: "black",
+                      marginLeft: "-100px",
                     }}
                   >
                     Remember
                   </span>
-                  {/* <span className="lable-data">Remember</span> */}
                 </div>
-                <div className='con' style={{ marginTop: '20px' }}>
+                <div className="con" style={{ marginTop: "20px" }}>
                   <input
-                    className='add-data-submit'
-                    type='submit'
-                    defaultValue='Login'
+                    className="add-data-submit"
+                    type="submit"
+                    defaultValue="Login"
                   />
                   <br />
                 </div>
-                <div className='linkp'>
-                  <a href='*'>Forgot password</a>
+                <div className="linkp">
+                  <a href="*">Forgot password</a>
                 </div>
                 <br />
 
-                <div className='linkp'>
-                  <span style={{ color: 'black' }}>
+                <div className="linkp">
+                  <span style={{ color: "black" }}>
                     Do not have an account?
                   </span>
-                  <a href='/'> Register Now </a>
+                  <a href="/"> Register Now </a>
                 </div>
-                {/* <div class="link">
-                <label for="lable-data">Dont have an account?<a href="*">Register here.</a></label>
-                
-            </div> */}
               </div>
             </form>
           </div>
-          {/* </section> */}
         </div>
       </>
     );

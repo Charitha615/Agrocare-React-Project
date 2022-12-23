@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React, { Component } from 'react';
 import './faq.css';
 import LogoImg from './logo.png';
@@ -15,8 +14,7 @@ class RegistationHome extends Component {
           <a href='/utype'>User Type</a>
           <a
             href='/login'
-            // className='btn-login  Loginbtn'
-            // style={{ marginTop: '1px' }}
+    
           >
             Login
           </a>

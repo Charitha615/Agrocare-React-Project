@@ -1,23 +1,22 @@
 import React, { Component } from "react";
-import './Registation.css'
+import "./Registation.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import Select from "react-select";
 import { APIURL } from "../../../API/environment";
 
-
 const initialState = {
   first_name: "",
   last_name: "",
   user_type: "",
   nic: "",
-  nearest_city:"",
-  district:"",
+  nearest_city: "",
+  district: "",
   email: "",
   password: "",
   mobile_no: "",
-  province:""
+  province: "",
 };
 
 const InterestedFieldsoptions = [
@@ -51,50 +50,40 @@ class RegistationStudent extends Component {
       first_name: this.state.first_name,
       last_name: this.state.last_name,
       user_type: this.state.user_type,
-      nic:this.state.nic,
+      nic: this.state.nic,
       email: this.state.email,
       password: this.state.password,
       mobile_no: this.state.mobile_no,
-      nearest_city:this.state.nearest_city,
+      nearest_city: this.state.nearest_city,
       district: this.state.district,
-      province:this.state.province
- 
+      province: this.state.province,
     };
 
     console.log(" Details : ", UserDetails);
 
-    axios
-      .post(`${APIURL}/user/register`, UserDetails)
-      .then((res) => {
-        if (res.status === 201) {
-          toast.success("Your Account Is Created!");
-          window.setTimeout(function () {
-            window.location.href = "/login";
-          }, 170);
-        } else {
-          toast.error("Plz check your details!");
-
-        }
-      });
+    axios.post(`${APIURL}/user/register`, UserDetails).then((res) => {
+      if (res.status === 201) {
+        toast.success("Your Account Is Created!");
+        window.setTimeout(function () {
+          window.location.href = "/login";
+        }, 170);
+      } else {
+        toast.error("Plz check your details!");
+      }
+    });
   }
 
   render() {
     return (
       <div className="SRbody">
-      <div class='topnav'>
-            <a class='active' href='/'>
-              Home
-            </a>
-            <a href='/faq'>FAQ</a>
-            <a href='/utype'>User Type</a>
-            <a
-            href='/login'
-            // className='btn-login  Loginbtn'
-            // style={{ marginTop: '1px' }}
-          >
-            Login
+        <div class="topnav">
+          <a class="active" href="/">
+            Home
           </a>
-          </div>
+          <a href="/faq">FAQ</a>
+          <a href="/utype">User Type</a>
+          <a href="/login">Login</a>
+        </div>
         <div className="container">
           <div className="row ">
             <div className="lottiefiles col-sm-12 col-md-4">
@@ -106,11 +95,15 @@ class RegistationStudent extends Component {
                 autoPlay
               />
             </div>
-            <div className="col-sm-12 col-md-8" style={{marginBottom:"-60px",marginTop:"-80px"}}>
+            <div
+              className="col-sm-12 col-md-8"
+              style={{ marginBottom: "-60px", marginTop: "-80px" }}
+            >
               <div className="container1">
-                <h1 style={{marginBottom:"-10px",marginTop:"-10px"}}>Registration</h1>
+                <h1 style={{ marginBottom: "-10px", marginTop: "-10px" }}>
+                  Registration
+                </h1>
                 <form method="POST" onSubmit={this.onSubmit}>
-                  {/* 2 column grid layout with text inputs for the first and last names */}
                   <div className="row">
                     <div className="col-lg-6">
                       <div className="form-group">
@@ -124,7 +117,7 @@ class RegistationStudent extends Component {
                           onChange={this.onChange}
                         />
                       </div>
-                   
+
                       <div className="form-group">
                         <input
                           type="text"
@@ -144,15 +137,13 @@ class RegistationStudent extends Component {
                           id="exampleInputPassword1"
                           placeholder="Province "
                           name="province"
-                          value={this.state.province }
+                          value={this.state.province}
                           onChange={this.onChange}
                         />
                       </div>
                       <div className="form-group">
-                        {/* <input type="text" class="form-control" id="exampleInputPassword1"
-                                            placeholder="Identification number of the student"> */}
                         <Select
-                        placeholder="Create account as"
+                          placeholder="Create account as"
                           options={InterestedFieldsoptions}
                           onChange={this.onGenderOptionSelected}
                         />
@@ -170,7 +161,7 @@ class RegistationStudent extends Component {
                           onChange={this.onChange}
                         />
                       </div>
-              
+
                       <div className="form-group">
                         <input
                           type="text"
@@ -193,7 +184,6 @@ class RegistationStudent extends Component {
                           onChange={this.onChange}
                         />
                       </div>
-                      
                     </div>
                   </div>
 
@@ -208,9 +198,8 @@ class RegistationStudent extends Component {
                       value={this.state.email}
                       onChange={this.onChange}
                     />
-                    {/* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> */}
                   </div>
-              
+
                   <div className="form-group">
                     <input
                       type="tel"
@@ -234,7 +223,6 @@ class RegistationStudent extends Component {
                       value={this.state.password}
                       onChange={this.onChange}
                     />
-                    
                   </div>
                   <div className="form-group">
                     <input
@@ -245,24 +233,18 @@ class RegistationStudent extends Component {
                       defaultValue={""}
                       minlength="6"
                       name="additionaInfromation"
-                      // value={this.state.additionaInfromation}
-                      // onChange={this.onChange}
                     />
-                    {/* <input type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="Contact person"> */}
-                    {/* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> */}
                   </div>
-                  {/* Submit button */}
                   <div className="col-md-6 btnSubmit">
                     <button
                       type="submit"
                       className=" button1 btn btn-block mb-4"
-                      style={{marginBottom:"-80px",marginTop:"-20px"}}
+                      style={{ marginBottom: "-80px", marginTop: "-20px" }}
                     >
                       SIGN UP
                     </button>
                   </div>
-                  <div className="aha" style={{marginTop:"-20px"}}>
+                  <div className="aha" style={{ marginTop: "-20px" }}>
                     Already have an account <Link to="/login"> Login</Link>
                   </div>
                 </form>

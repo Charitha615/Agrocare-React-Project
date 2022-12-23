@@ -9,7 +9,7 @@ import login from "./components/pages/Login/login";
 import faq from "./components/pages/Registations/Faq/Faq";
 import utype from "./components/pages/Registations/UserType/UserType";
 
-// Farmer 
+// Farmer
 import FarmerHomePage from "./components/pages/Farmer/Home/farmerHome";
 import AddProduct from "./components/pages/Farmer/Product/CreateProduct";
 import CreatedProductList from "./components/pages/Farmer/Product/CreatedProductList/createdProductList";
@@ -20,8 +20,7 @@ import FarmerViewForum from "./components/pages/Farmer/Forum/ViewForum";
 import EditProfile from "./components/pages/Farmer/Profile/EditProfile";
 import FertilizerList from "./components/pages/Farmer/Fertilizer/FertilizerList";
 
-
-// Shop Owner 
+// Shop Owner
 import ShopOwnerHomePage from "./components/pages/ShopOwner/Home/shopOwnerHome";
 import Addfertilizer from "./components/pages/ShopOwner/fertilizer/Addfertilizer";
 import CreatedfertilizerList from "./components/pages/ShopOwner/fertilizer/Existing Fertilizer/existingfertilizer";
@@ -30,20 +29,16 @@ import ShopOwnerProfile from "./components/pages/ShopOwner/Profile/Profile";
 import ShopOwnerProfileEdit from "./components/pages/ShopOwner/Profile/EditProfile";
 
 // Expert
-import ExpertHomePage from "./components/pages/Expert/Home/ExpertHome";
 import ExpertProfile from "./components/pages/Expert/Profile/Profile";
 import ExpertProfileEdit from "./components/pages/Expert/Profile/EditProfile";
 import ExpertViewForum from "./components/pages/Expert/Forum/ViewForum";
 import ExpertAddAnswer from "./components/pages/Expert/Forum/AddQuestions";
 
 //Customer
-import CustomerHomePage from "./components/pages/Customer/Home/customerHome"
-import CustomerProfile from "./components/pages/Customer/Profile/Profile"
-import CustomerProfileEdit from "./components/pages/Customer/Profile/EditProfile"
-import CustomerviewProduct from "./components/pages/Customer/View Product Details/viewProduct"
-
-
-
+import CustomerHomePage from "./components/pages/Customer/Home/customerHome";
+import CustomerProfile from "./components/pages/Customer/Profile/Profile";
+import CustomerProfileEdit from "./components/pages/Customer/Profile/EditProfile";
+import CustomerviewProduct from "./components/pages/Customer/View Product Details/viewProduct";
 
 function App() {
   return (
@@ -79,19 +74,23 @@ function App() {
           <Route path="/EditProfile" component={EditProfile} />
           <Route path="/FertilizerList" component={FertilizerList} />
 
-
           {/* Shop Owner */}
 
           <Route path="/ShopOwnerHome" component={ShopOwnerHomePage} />
           <Route path="/Addfertilizer" component={Addfertilizer} />
-          <Route path="/CreatedfertilizerList" component={CreatedfertilizerList} />
+          <Route
+            path="/CreatedfertilizerList"
+            component={CreatedfertilizerList}
+          />
           <Route path="/Updatefertilizer" component={Updatefertilizer} />
           <Route path="/ShopOwnerProfile" component={ShopOwnerProfile} />
-          <Route path="/ShopOwnerProfileEdit" component={ShopOwnerProfileEdit} />
+          <Route
+            path="/ShopOwnerProfileEdit"
+            component={ShopOwnerProfileEdit}
+          />
 
           {/* Expert */}
 
-          <Route path="/ExpertHomePage" component={ExpertHomePage} />
           <Route path="/ExpertProfile" component={ExpertProfile} />
           <Route path="/ExpertProfileEdit" component={ExpertProfileEdit} />
           <Route path="/ExpertViewForum" component={ExpertViewForum} />
@@ -99,13 +98,10 @@ function App() {
 
           {/* Customer */}
 
-          <Route path="/CustomerHomePage" component={CustomerHomePage} />          
+          <Route path="/CustomerHomePage" component={CustomerHomePage} />
           <Route path="/CustomerProfile" component={CustomerProfile} />
           <Route path="/CustomerProfileEdit" component={CustomerProfileEdit} />
           <Route path="/CustomerviewProduct" component={CustomerviewProduct} />
-
-
-
         </Switch>
       </Router>
     </div>
