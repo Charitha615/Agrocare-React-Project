@@ -40,6 +40,8 @@ module.exports = {
             const result = await addAnswer(id, answer, user.first_name);
             res.status(201).send()
         }catch(e) {
+            console.log(e.code)
+            console.log(e.message)
             res.status(e.code || 400).send(e.message)
         }
     },

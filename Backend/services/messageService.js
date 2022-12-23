@@ -26,7 +26,15 @@ module.exports = {
     },
 
     getAllQuestions:async ()=>{
-        return getAllQuestionsDB();
+        const questions = await getAllQuestionsDB();
+        const updatedQuestions = await Promise.all(
+            questions.map(async question =>{
+                const answers = await getAnswersForQuestionDB(question.question_id);
+                question.answers = answers;
+                return question;
+            })
+        )
+        return updatedQuestions;
     },
 
     getQuestion:async(id)=>{
