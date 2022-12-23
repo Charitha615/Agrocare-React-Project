@@ -35,15 +35,20 @@ class CreateProductList extends Component {
 
   RollBack(e, jobID) {
     console.log(jobID)
+    let config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+          }
+  }
 
-    axios.delete(`${APIURL}/Applicant/deleteappliedJob/${jobID}`)
+    axios.delete(`${APIURL}/product/${jobID}`,config)
 
       .then((res) => {
         console.log("res", res);
-        if (res.data.code === 200) {
+        if (res.status === 200) {
           console.log("res.data.code", res.data.code);
 
-          toast.success("Applied Job is Deleted!");
+          toast.success("Product is Deleted!");
 
 
           window.setTimeout(function () {
@@ -78,7 +83,8 @@ class CreateProductList extends Component {
         Authorization: `Bearer ${token}`
           }
   }
-    axios.get(`${APIURL}/product/allProducts?type=farmer`,config)
+  console.log("first")
+    axios.get(`${APIURL}/product/allProducts?type=Farmer`,config)
 
       .then(response => {
 
@@ -159,7 +165,7 @@ class CreateProductList extends Component {
                                           <button type="button" className="btn btn-warning waves-effect waves-light"
                                             onClick={e=>this.assignId(e,item.product_id)}>Edit</button>
                                           <button type="button" className="btn btn-danger waves-effect waves-light"
-                                            onClick={e => this.RollBack(e, item._id)}>Delete</button>
+                                            onClick={e => this.RollBack(e, item.product_id)}>Delete</button>
                            
 
                                         </>

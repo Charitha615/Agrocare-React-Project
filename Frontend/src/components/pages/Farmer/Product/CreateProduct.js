@@ -122,7 +122,7 @@ class CreateProduct extends Component {
                                                         <div className="form-group row">
                                                             <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Product Price</label>
                                                             <div className="col-sm-10">
-                                                                <input className="form-control" type="text" placeholder="A Product Price is..." id="example-text-input"
+                                                                <input className="form-control" type="number" placeholder="A Product Price is..." id="example-text-input"
                                                                     name="unit_price"
                                                                     value={this.state.unit_price}
                                                                     onChange={this.onChange}
@@ -136,7 +136,7 @@ class CreateProduct extends Component {
                                                         <div className="form-group row">
                                                             <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Products quantity</label>
                                                             <div className="col-sm-10">
-                                                                <input className="form-control" type="text" placeholder="Products quantities are..." id="example-text-input"
+                                                                <input className="form-control" type="number" placeholder="Products quantities are..." id="example-text-input"
                                                                     name="quantity"
                                                                     value={this.state.quantity}
                                                                     onChange={this.onChange}

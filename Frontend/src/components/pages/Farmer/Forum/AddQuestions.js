@@ -57,7 +57,7 @@ class FarmerQuestions extends Component {
         console.log("res", res);
         if (res.status === 201) {
 
-          toast.success("Product added!");
+          toast.success("Question added!");
           window.location.reload();
 
         } else {

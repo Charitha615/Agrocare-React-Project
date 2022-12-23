@@ -132,6 +132,7 @@ class RegistationStudent extends Component {
                           id="exampleInputPassword1"
                           placeholder="NIC"
                           name="nic"
+                          minlength="10"
                           value={this.state.nic}
                           onChange={this.onChange}
                         />
@@ -229,6 +230,7 @@ class RegistationStudent extends Component {
                       aria-describedby="emailHelp"
                       placeholder="Password"
                       name="password"
+                      minlength="6"
                       value={this.state.password}
                       onChange={this.onChange}
                     />
@@ -241,6 +243,7 @@ class RegistationStudent extends Component {
                       id="otherInfo"
                       placeholder="Confirm Password"
                       defaultValue={""}
+                      minlength="6"
                       name="additionaInfromation"
                       // value={this.state.additionaInfromation}
                       // onChange={this.onChange}
