@@ -41,41 +41,32 @@ class CustomerHome extends Component {
     }
 
     applyJob(e,
-        _id,
-        closing_date,
-        createdAt,
-        employerID,
-        employerName,
-        job_category,
-        job_description,
-        job_title,
-        job_type
+        id,
+        product_name,
+        unit_price,
+        quantity,
+        available_from,
+        available_until,
     ) {
 
         e.preventDefault();
 
-        window.localStorage.removeItem("ViewedJobID");
-        window.localStorage.removeItem("ViewedJobclosing_date");
-        window.localStorage.removeItem("ViewedJobcreatedAt");
-        window.localStorage.removeItem("ViewedJobemployerID");
-        window.localStorage.removeItem("ViewedJobemployerName");
-        window.localStorage.removeItem("ViewedJobjob_category");
-        window.localStorage.removeItem("ViewedJobjob_description");
-        window.localStorage.removeItem("ViewedJobjob_title");
-        window.localStorage.removeItem("ViewedJobjob_type");
+        window.localStorage.removeItem("ProductID");
+        window.localStorage.removeItem("ProductName");
+        window.localStorage.removeItem("ProductPrice");
+        window.localStorage.removeItem("ProductQty");
+        window.localStorage.removeItem("ProductFrom");
+        window.localStorage.removeItem("ProductUntill");
 
-        localStorage.setItem("ViewedJobID", _id)
-        localStorage.setItem("ViewedJobclosing_date", closing_date)
-        localStorage.setItem("ViewedJobcreatedAt", createdAt)
-        localStorage.setItem("ViewedJobemployerID", employerID)
-        localStorage.setItem("ViewedJobemployerName", employerName)
-        localStorage.setItem("ViewedJobjob_category", job_category)
-        localStorage.setItem("ViewedJobjob_description", job_description)
-        localStorage.setItem("ViewedJobjob_title", job_title)
-        localStorage.setItem("ViewedJobjob_type", job_type)
+        localStorage.setItem("ProductID", id)
+        localStorage.setItem("ProductName", product_name)
+        localStorage.setItem("ProductPrice", unit_price)
+        localStorage.setItem("ProductQty", quantity)
+        localStorage.setItem("ProductFrom", available_from)
+        localStorage.setItem("ProductUntill", available_until)
 
 
-        // window.location = "/ApplicantViewVacancy"
+        window.location = "/CustomerviewProduct"
 
 
     }
@@ -88,7 +79,7 @@ class CustomerHome extends Component {
                 }
         }
     
-        axios.get(`${APIURL}/product/allProducts?type=farmer`,config)
+        axios.get(`${APIURL}/product/allProducts?type=Farmer`,config)
 
             .then(response => {
                 this.setState({ Products: response.data});
@@ -167,12 +158,12 @@ class CustomerHome extends Component {
                                 {this.state.Products.length > 0 && this.state.Products.map((item, index) => (
 
                                     <div className="col-lg-4" key={index} >
-                                        <div className="card" style={{ height: "300px", width: "350px" }}>
+                                        <div className="card" style={{ height: "300px", width: "350px" ,marginTop:"30px"}}>
                                             <div className="card-body">
                                                 <div className="media mb-3">
                                                     <img src="assets/images/widgets/project2.jpg" alt="" className="thumb-md rounded-circle" />
                                                     <div className="media-body align-self-center text-truncate ml-3">
-                                                        <h4 className="m-0 font-weight-semibold text-dark font-16">{item.title}</h4>
+                                                        <h4 className="m-0 font-weight-semibold text-dark font-16">{item.product_name}</h4>
                                                         <p className="text-muted  mb-0 font-13"><span className="text-dark">Price:
                                                         </span>{item.unit_price}</p>
                                                     </div>
@@ -225,15 +216,12 @@ class CustomerHome extends Component {
                                                                 onClick={e => this.applyJob
                                                                     (
                                                                         e,
-                                                                        item._id,
-                                                                        item.closing_date,
-                                                                        item.createdAt,
-                                                                        item.employerID,
-                                                                        item.employerName,
-                                                                        item.job_category,
-                                                                        item.job_description,
-                                                                        item.job_title,
-                                                                        item.job_type
+                                                                        item.product_id,
+                                                                        item.product_name,
+                                                                        item.unit_price,
+                                                                        item.quantity,
+                                                                        item.available_from,
+                                                                        item.available_until,
                                                                     )}><i className="mdi mdi-check-all mr-2" />View</button>
 
                                                         </>

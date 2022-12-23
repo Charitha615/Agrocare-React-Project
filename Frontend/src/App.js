@@ -40,6 +40,7 @@ import ExpertAddAnswer from "./components/pages/Expert/Forum/AddQuestions";
 import CustomerHomePage from "./components/pages/Customer/Home/customerHome"
 import CustomerProfile from "./components/pages/Customer/Profile/Profile"
 import CustomerProfileEdit from "./components/pages/Customer/Profile/EditProfile"
+import CustomerviewProduct from "./components/pages/Customer/View Product Details/viewProduct"
 
 
 
@@ -101,6 +102,7 @@ function App() {
           <Route path="/CustomerHomePage" component={CustomerHomePage} />          
           <Route path="/CustomerProfile" component={CustomerProfile} />
           <Route path="/CustomerProfileEdit" component={CustomerProfileEdit} />
+          <Route path="/CustomerviewProduct" component={CustomerviewProduct} />
 
 
 
