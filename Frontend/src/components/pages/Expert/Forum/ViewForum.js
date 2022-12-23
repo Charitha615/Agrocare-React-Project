@@ -148,7 +148,10 @@ class ViewForum extends Component {
                                                 </div>
                                                 <div style={{ marginTop: "-15px", height: "90px" }}>
                                                     <p className="text-muted mt-4 mb-1">
-                                                        {item.ans}
+                                                    {item.answers.length > 0 && item.answers.map((item, index) => (
+                                                        <p>{item.answer}</p>
+                                                    ))}
+                                                        
                                                     </p>
                                                 </div>
                                                 <br />

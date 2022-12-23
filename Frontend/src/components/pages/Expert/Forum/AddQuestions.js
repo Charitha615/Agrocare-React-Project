@@ -61,7 +61,7 @@ console.log(QuestionsDetails)
         if (res.status === 201) {
 
           toast.success("Answer added!");
-          window.location.reload();
+          // window.location.reload();
 
         } else {
           toast.error("Please check your details");
